@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>title</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="js/jquery-1.9.1.min.js"></script>
+    <script src="js/handlebars.js"></script>
+    <style>
+    p { color: green; }
+    </style>
+  </head>
+  <body>
+1. Alpha keys test (works): <div id="container1"></div>
+
+<br />
+2. CJK "口" test, alpha keys: <div id="container2"></div>
+
+<br /><br />
+3. CJK "口" test, +CJK keys: <div id="container3"></div>(no green text = fail. Shouldn't.)
+
+
+
+<script>var jsonDictSample = {
+  title: "My first word!",
+  口: {
+    zht: "口-我是個帥哥",
+    pyn: "kou3",
+    dfn: "mouth"
+  },
+  blatitle: "bla-My first word!",
+  bla: {
+    zht: "bla-口-我是個帥哥",
+    pyn: "bla-kou3",
+    dfn: "bla-mouth"
+  },
+}
+
+
+var source1   = '<p>{{title}}</p>';
+var template = Handlebars.compile(source1);
+var html  = template(jsonDictSample);
+$('#container1')
+  .append(html);
+
+var source2   = '<p>{{blatitle}}<br />{{bla.zht}}} / {{bla.pyn}} / {{bla.dfn}}</p>';
+var template = Handlebars.compile(source2);
+var html  = template(jsonDictSample);
+$('#container2')
+  .append(html);
+
+var source3   = '<p>{{title}}<br />{{口.zht}} / {{口.pyn}} / {{口.dfn}}</p>';
+var template = Handlebars.compile(source3);
+var html  = template(jsonDictSample);
+$('#container3')
+  .append(html);
+  </script>
+  </body>
+</html>

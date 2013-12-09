@@ -1,0 +1,123 @@
+/* APPS.style */
+em { 
+    font-weight: bold; 
+    color: skyblue; 
+}
+
+
+/*******************************************/
+/*                     ANCHOR BOX                     */
+/*******************************************/
+/* TPL Anchor box: */
+#anchor { border: 1px solid #CCC; padding: 0; font-size: 0.5em;}
+#anchor p { margin: 2px; color: #333 }
+#anchor p:nth-child(odd) { background: #C0C0C0; } /*D0*/
+
+
+/*******************************************/
+/*                         DICT-LIST                       */
+/*******************************************/
+/* Lexicography > color */
+zh { font-size: 3em; color: #B10000; }
+pyn { color: green; }
+gra { color: #333; font-style: italic; }
+def { color: black; font-style: normal; }
+/* Lexicography > ponctuation pyn & gra */
+pyn:nth-child(1):after { content: ": "; }
+gra:nth-child(1):after { content: ". "; }
+/* Lexicography > bullets > sem */
+def:nth-child(1):before { content:  "➊"  ; font-size: 1.5em; }
+def:nth-child(2):before { content:  "; ➋"; font-size: 1.5em; }
+def:nth-child(3):before { content:  "; ➌"; font-size: 1.5em; }
+def:nth-child(4):before { content:  "; ➍"; font-size: 1.5em; }
+def:nth-child(5):before { content:  "; ➎"; font-size: 1.5em; }
+def:nth-child(6):before { content:  "; ➏"; font-size: 1.5em; }
+def:nth-child(7):before { content:  "; ➐"; font-size: 1.5em; }
+def:nth-child(8):before { content:  "; ➑"; font-size: 1.5em; }
+def:nth-child(9):before { content:  "; ➒"; font-size: 1.5em; }
+def:nth-child(10):before { content: "; ➓"; font-size: 1.5em; }
+def:nth-child(11):before { content: "; ⓫"; font-size: 1.5em; }
+def:nth-child(12):before { content: "; ⓬"; font-size: 1.5em; }
+def:nth-child(13):before { content: "; ⓭"; font-size: 1.5em; }
+def:nth-child(14):before { content: "; ⓮"; font-size: 1.5em; }
+def:nth-child(15):before { content: "; ⓯"; font-size: 1.5em; }
+def >dfn:nth-of-type(n+2):before { content: ", "; }
+
+/* Lexicography > bullets > phon:
+def:nth-child(1):before { content:  "①"  ; font-size: 1.5em; }
+def:nth-child(2):before { content:  "; ②"; font-size: 1.5em; }
+def:nth-child(3):before { content:  "; ③"; font-size: 1.5em; }
+def:nth-child(4):before { content:  "; ④"; font-size: 1.5em; }
+def:nth-child(5):before { content:  "; ⑤"; font-size: 1.5em; }
+def:nth-child(6):before { content:  "; ⑥"; font-size: 1.5em; }
+def:nth-child(7):before { content:  "; ⑦"; font-size: 1.5em; }
+def:nth-child(8):before { content:  "; ⑧"; font-size: 1.5em; }
+def:nth-child(9):before { content:  "; ⑨"; font-size: 1.5em; }
+def:nth-child(10):before { content: "; ⑩"; font-size: 1.5em; }
+*/
+
+/*******************************************/
+/*                       BUTTONS                        */
+/*******************************************/
+/* BUTTONS> text: */
+button {
+    font-size: 6em;
+}
+.status0 {
+    color: blue;
+}
+.status1 {
+    color: blue;
+}
+
+/*  BOUTTONS> shape */
+html {
+  height: 100%;
+}
+body {
+  height: 100%;
+  /* background: #C1D1DA; */
+  background: #303030;
+}
+
+button.btn {
+  font-size: 22px; /* 6em*/
+  float: left;
+  margin: 5px;
+  width: 50px;
+  height: 50px;
+  border-radius: 10%;
+  border:none;
+  background: #333;
+  background: linear-gradient(to bottom, #363636 0%, #292929 100%);
+  box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.7), inset 0 2px 0 -1px rgba(98, 98, 98, 0.5), 0 3px 7px -3px rgba(0, 0, 0, 0.7);
+  color: #ADADAD;
+  text-align: center;
+  line-height: 50px;
+  cursor: pointer;
+  transition: color .3s ease;
+}
+.btn.status1 { 
+  color: red;
+}
+.btn.status1:hover {
+  color: #BC2C2C;
+}
+.btn.status0 {
+  box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.4), 0 3px 0 -1px rgba(98, 98, 98, 0.5), inset 0 4px 15px -2px rgba(0, 0, 0, 0.5);
+  color: green;
+}
+.btn.status0:hover {
+  outline:none; /* useless*/
+  color: #308830;
+}
+
+
+
+
+
+
+
+
+
+

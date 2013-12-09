@@ -1,0 +1,164 @@
+{ "CFDICT" : 
+    {
+     "人": {
+        "hant": "人",
+        "hans": "人",
+        "pyn": "rén",
+        "definitions": [
+            {  
+                "gra": "n",
+                "cla": ["個", "位"],
+                "def":[ "man", "people" ],
+                "sam": [
+                  { 
+                    "hant": "我們⸱是⸱法國人",
+                    "hans": "我们⸱是⸱法国人",
+                    "pyn": "wǒmen shì fǎguó rén",
+                    "fra": "nous sommes français",
+                    "eng": "we are french (people)"
+                }
+                ],
+                "syn":[ "人家" ],
+                "ant":[ "動物", "狼" ],
+                "mnemo": ["Un homme (人) debout, marchant sans dévoiler ses bras."]
+            },
+            {
+                "gra": "n",
+                "def":[ "mankind", "someone else" ]
+            }
+        ]
+    },
+    "們": {
+        "hant": "們",
+        "hans": "们",
+        "pyn": "men",
+        "definitions": [
+            {
+                "gra": "adj prn",
+                "def":[ "indicate plural" ], 
+                "sam": { 
+                    "hant": "我們是法國人",
+                    "hans": "我們是法国人",
+                    "pyn": "wǒmen shì fǎguó rén",
+                    "fra": "nous sommes français",
+                    "eng": "we are french (people)"
+                }
+            }
+        ]
+    },
+     "火": {
+        "hant": "火",
+        "hans": "火",
+        "pyn": "huǒ",
+        "definitions": [
+            {     
+                "gra": "n",
+                "cla": [ "個", "顿" ],
+                "def": [ "feu", "flamme" ],
+                "sam": [
+                  { 
+                    "hant": "爸爸用火燒雞肉",
+                    "hans": "爸爸用火烧鸡肉",
+                    "pyn": "bābā yòng huǒ shāo jīròu",
+                    "fra": "Papa utilise le feu pour rôtir le poulet",
+                    "eng": "Dad use fire to roast the chicken"
+                  },
+                  {
+                    "hant": "太陽是火嗎？",
+                    "hans": "",
+                    "pyn": "tai4yang2 shi4 huo3 ma5?",
+                    "fra": "Le soleil c'est du feu?",
+                    "eng": "Is Sun fire ?"
+                  }
+                ], 
+                "syn": [ "火儿" ],
+                "ant": [ "eau", "glace" ],
+                "dom": [ "vie quotidienne", "science"],
+                "reg": "=",
+                "col": [ "火山", "火機", "火花" ], 
+                "rel+": [ "紅", "熱", "燒" ],
+                "mnemo": ["Un tas de buches avec des flames au dessus (火)."],
+                "idi": [ ]
+            }
+        ]
+    },
+      "爸": {
+        "hant": "爸",
+        "hans": "爸",
+        "pyn": "ba1",
+        "definitions": [
+            {  
+                "gra": "n",
+                "def": [ "papa","père" ],
+                "sam": { 
+                    "hant": "我爸是最強！",
+                    "hans": "我爸是最強！",
+                    "pyn": "Wo Ba shi zui qiang !",
+                    "fra": "Mon père est les plus fort!",
+                    "eng": "My dad is the strongest !"
+                }
+            }
+        ]
+    },
+     "山": {
+        "hant": "山",
+        "hans": "山",
+        "pyn": "shān",
+        "definitions": [
+            {  
+                "gra": "n",
+                "def": [ "montagne", "mont" ],
+                "sam": { 
+                    "hant": "山是最高的東西，Everest山是8844米的！",
+                    "hans": "山是最高的东西，Everest山是8844米的！",
+                    "pyn": "Shān shì zuì gāo de dōngxi, Everest shān shì 8844 mǐ de!",
+                    "fra": "Les montagnes sont les plus grandes choses, le Mont Everest fait 8844m!",
+                    "eng": "Mountains are the highest things, Mount Everest is 8844 meters high !"
+                }
+            }
+        ]
+    },
+     "口": {
+        "hant": "口",
+        "hans": "口",
+        "pyn": "kǒu",
+        "definitions": [
+            {  
+                "gra": "n",
+                "def": [ "bouche" ],
+                "sam": { 
+                    "hant": "我用口吃牛肉",
+                    "hans": "我用口吃牛肉",
+                    "pyn": "Wǒ yòng kǒu chī niúròu",
+                    "fra": "On utilise la bouche pour manger du boeuf",
+                    "eng": "We use mouth to eat cow meat"
+                }
+            }
+        ]
+    },
+     "火山口": {
+        "hant": "火山口",
+        "hans": "火山口",
+        "pyn": "huǒ'shān'kǒu",
+        "definitions": [
+            {  
+                "gra": "n",
+                "def": [ "cratère volcanique", "cratère de volcan" ],
+                "sam": { 
+                    "hant": "火山口是火山上方相凹形的區域",
+                    "hans": "火山口是火山上方相凹形的区域",
+                    "pyn": "Huǒshānkǒu shì huǒshān shàngfāng xiàng āo xíng de qūyù",
+                    "fra": "Le cratère volcanique est au sommet du volcan la zone en forme de U",
+                    "eng": "The volcanic crater is at the top of a volcano the area in U shape"
+                }
+            }
+        ]
+    },
+    "A": { "hant": "A"    },
+    "B": { "hant": "B"    },
+    "C": { "hant": "C"    },
+    "AB": { "hant": "AB"    },
+    "ABC": { "hant": "ABC"    }
+    },
+"success": 1
+}
