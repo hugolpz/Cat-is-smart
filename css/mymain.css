@@ -1,47 +1,45 @@
 /* APPS.style */
-em { 
-    font-weight: bold; 
-    color: skyblue; 
+html {
+  height: 100%;
 }
-
+body {
+  height: 100%;
+}
+* { transition: 0.6s; }
 
 /*******************************************/
-/*                     ANCHOR BOX                     */
+/*                HOOK BOX                 */
 /*******************************************/
 /* TPL Anchor box: */
-#anchor { border: 1px solid #CCC; padding: 0; font-size: 0.5em;}
-#anchor p { margin: 2px; color: #333 }
-#anchor p:nth-child(odd) { background: #C0C0C0; } /*D0*/
+#hook { padding: 0; font-size: 1em;}
+#hook p { margin: 0.1em; color: #333 }
 
 
 /*******************************************/
 /*                         DICT-LIST                       */
 /*******************************************/
 /* Lexicography > color */
-zh { font-size: 3em; color: #B10000; }
-pyn { color: green; }
-gra { color: #333; font-style: italic; }
-def { color: black; font-style: normal; }
-/* Lexicography > ponctuation pyn & gra */
-pyn:nth-child(1):after { content: ": "; }
-gra:nth-child(1):after { content: ". "; }
+.tpl { font-size: 1em;}
+.ort { font-size: 2em; color: #B10000; }
+.pho { color: green; font-weight: 700; }
+.pos { color: #333; font-style: italic; }
+.def { color: black; font-style: normal; }
 /* Lexicography > bullets > sem */
-def:nth-child(1):before { content:  "➊"  ; font-size: 1.5em; }
-def:nth-child(2):before { content:  "; ➋"; font-size: 1.5em; }
-def:nth-child(3):before { content:  "; ➌"; font-size: 1.5em; }
-def:nth-child(4):before { content:  "; ➍"; font-size: 1.5em; }
-def:nth-child(5):before { content:  "; ➎"; font-size: 1.5em; }
-def:nth-child(6):before { content:  "; ➏"; font-size: 1.5em; }
-def:nth-child(7):before { content:  "; ➐"; font-size: 1.5em; }
-def:nth-child(8):before { content:  "; ➑"; font-size: 1.5em; }
-def:nth-child(9):before { content:  "; ➒"; font-size: 1.5em; }
-def:nth-child(10):before { content: "; ➓"; font-size: 1.5em; }
-def:nth-child(11):before { content: "; ⓫"; font-size: 1.5em; }
-def:nth-child(12):before { content: "; ⓬"; font-size: 1.5em; }
-def:nth-child(13):before { content: "; ⓭"; font-size: 1.5em; }
-def:nth-child(14):before { content: "; ⓮"; font-size: 1.5em; }
-def:nth-child(15):before { content: "; ⓯"; font-size: 1.5em; }
-def >dfn:nth-of-type(n+2):before { content: ", "; }
+.def .sem:nth-child(1):before  { content: "➊"  ; font-size: 1.2em; }
+.def .sem:nth-child(2):before  { content: "; ➋"; font-size: 1.2em; }
+.def .sem:nth-child(3):before  { content: "; ➌"; font-size: 1.2em; }
+.def .sem:nth-child(4):before  { content: "; ➍"; font-size: 1.2em; }
+.def .sem:nth-child(5):before  { content: "; ➎"; font-size: 1.2em; }
+.def .sem:nth-child(6):before  { content: "; ➏"; font-size: 1.2em; }
+.def .sem:nth-child(7):before  { content: "; ➐"; font-size: 1.2em; }
+.def .sem:nth-child(8):before  { content: "; ➑"; font-size: 1.2em; }
+.def .sem:nth-child(9):before  { content: "; ➒"; font-size: 1.2em; }
+.def .sem:nth-child(10):before { content: "; ➓"; font-size: 1.2em; }
+.def .sem:nth-child(11):before { content: "; ⓫"; font-size: 1.2em; }
+.def .sem:nth-child(12):before { content: "; ⓬"; font-size: 1.2em; }
+.def .sem:nth-child(13):before { content: "; ⓭"; font-size: 1.2em; }
+.def .sem:nth-child(14):before { content: "; ⓮"; font-size: 1.2em; }
+.def .sem:nth-child(15):before { content: "; ⓯"; font-size: 1.2em; }
 
 /* Lexicography > bullets > phon:
 def:nth-child(1):before { content:  "①"  ; font-size: 1.5em; }
@@ -57,31 +55,53 @@ def:nth-child(10):before { content: "; ⑩"; font-size: 1.5em; }
 */
 
 /*******************************************/
+/*               MONITORING                   */
+/*******************************************/
+.sound, .knol, .favorite { font-size: 1em; color:grey; }
+
+.tpl[data-status="1"   ] .knol { color:grey;  }
+.tpl[data-status="0.01"] .knol { color:green;}
+.tpl[data-favorite="1" ] .favorite { color:yellow; }
+.tpl[data-favorite="0" ] .favorite { color:grey; }
+
+
+.left-bd-indicator { /*structure */
+	border-left: 0.5em solid #eee;
+	/* margin-left: 0.5em; */
+}
+/* http://getbootstrap.com/css/#helper-classes */
+.bg-neutral { background-color: white;   }
+.bg-primary { background-color: #428bca; }
+.bg-success { background-color: #dff0d8; }
+.bg-info 	{ background-color: #d9edf7; }  
+.bg-warning { background-color: #fcf8e3; } 
+.bg-danger  { background-color: #f2dede; }
+
+.bd-neutral { border-color: #CCC;    }
+.bd-primary { border-color: #428bca; }
+.bd-success { border-color: #5cb85c; }
+.bd-info 	{ border-color: #5bc0de; }
+.bd-warning { border-color: #fbeed5; } /*dark: #f0ad4e ; light: #fbeed5;*/
+.bd-danger  { border-color: #d9534f; }
+.tpl { border-top: 1px solid #CCC;   }
+/*
+.row { display:table !important; }
+
+.sound, .knol, .favorite {
+    height: 100%;
+    display:table-cell;
+    vertical-align:middle;
+    text-align: inherit;
+} */
+
+/*******************************************/
 /*                       BUTTONS                        */
 /*******************************************/
 /* BUTTONS> text: */
-button {
-    font-size: 6em;
-}
-.status0 {
-    color: blue;
-}
-.status1 {
-    color: blue;
-}
 
 /*  BOUTTONS> shape */
-html {
-  height: 100%;
-}
-body {
-  height: 100%;
-  /* background: #C1D1DA; */
-  background: #303030;
-}
-
-button.btn {
-  font-size: 22px; /* 6em*/
+button.betn {
+  font-size: 1em;
   float: left;
   margin: 5px;
   width: 50px;

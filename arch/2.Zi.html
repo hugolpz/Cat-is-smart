@@ -43,19 +43,22 @@
 <script id="CFDICT-tpl" type="text/template">
         <button class="tpl zi-test-entry btn status0" data-lexeme="{{hant}}">{{hant}}</button>
 </script>  
-<script>
-    loadFileJSON("jsonStatus0711e", "http://d.codio.com/hugolpz/Cat-is-smart/data/status-starter.min.json");  // https://codio.com/hugolpz/Cat-is-smart/tree/data/status-starter.json
-    // updateJsonScores(localStorage.jsonStatus0711e);
-    list = getMyList(localStorage.jsonStatus0711e, 10); console.log(list);
-    injectTPL('http://d.codio.com/hugolpz/Cat-is-smart/data/cfdict.json', list, '#CFDICT-tpl', '#anchor', function() { setLexemeStatusCSS('#anchor > .tpl'); });
-
-$(document).ready(function() {
-    //$('body').on('load', setLexemeStatusCSS); // <--------- may be simplified as on('load', 'button', setLexemeStatusCSS) // $('button'), 3000) );
-    $('body').on('click', 'button', clickChangeLexemeStatus);
-    sortJSON(json,'status', '321');
-    });
-
-  </script>
+      <script>
+          /* ######### EDIT DOM ######### */
+          
+          var json =  loadFileJSON( 'https://codio.io/hugolpz/Cat-is-smart/data/status-starter-20.json', 'jsonStatus0202a');
+          // updateJsonScores(localStorage.jsonStatus0711e);
+          var list = getMyList('jsonStatus0202a', 10, 1);  console.log("L: "+list);
+          injectTPL('https://codio.io/hugolpz/Cat-is-smart/data/cfdict.json', list, '#CFDICT-tpl', '#anchor', function() { setLexemeStatusCSS(); });
+          /* ######### EDIT CSS ######### */
+          /* ######### EDIT CSS ######### */
+          $(document).ready(function() {
+              //$('body').on('load', setLexemeStatusCSS); // <--------- may be simplified as on('load', 'button', setLexemeStatusCSS) // $('button'), 3000) );
+              $('body').on('click', 'button', switchLexemeStatus);
+              sortJSON(statusData,'status', '321'); // <----------------- THIS CREATE VAR JSON
+          });
+          
+      </script>
   <footer></footer><!-- /jqm-footer -->
 </div><!-- /page -->
 

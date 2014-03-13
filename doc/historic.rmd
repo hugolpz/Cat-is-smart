@@ -1,0 +1,109 @@
+Synchronizing Codio with Git repo (github or gitlab). 1, 2 . 3: getting a pair of repos. 4: connecting. 5: synchronizing.
+RIGHTS MANAGEMENTS:
+1. Get my public key :
+	https://codio.com/hugolpz > Codio > Account > tab: SSH key
+	"We have generated an SSH public and private key pair for you on our servers. 
+	Below is your public key. 
+	Use this to allow Codio to communicate with external servers over SSH."
+2. Added KEYS to my user's account on github/gitlab :
+	* https://github.com/settings/ssh
+	* http://git.mysite.com/profile/keys
+CREATE PAIR OF CONNECTED REPOS:
+3. Have a Gihub code? => Create a Codio project:
+	* https://codio.com/myname > tab: "Create project"
+	* name: <projectname>
+	* Git
+	Done. Got to 5.
+3. Have Codio code? => Create a github/gitlab repo on:
+	* https://github.com/new > create repository
+	* http://git.mysite.com/projects/new > create project
+	> grab the SSH key, such : git@github.com:username/projectname.git
+4. Codio.com > project > Tools (tab) > Git < Remotes... : 
+	* name: origin
+	* SSH key: git@github.com:username/projectname.git
+	OR: git remote add origin <ssh_key>
+SYNCHRO:
+5. git add -A ; git push # syncrhonize with git pull codio<=git or git push: codio=>git
+
+[https://codio.com/s/docs/settings-prefs/account-settings/public-key/]: Codio on keys
+[https://codio.com/s/docs/git/git-primer/#i-do-not-yet-have-a-remote-repo]: Codio on Git
+----
+
+Ok, Boston & the #TCLT8 want a cognitive WebApp? Ok, Let's the hacking start!! @edouard_lopez pic.twitter.com/ERZ3p8suOW 
+
+DATA MODULE: Improved JSON data format a bit. Better this way.
+API request to clean up. list > API > utf8 trouble. Use: alert(JSON.stringify(data)); + Not in order > post processing sort() needed! Done!
+LOAD-SAVE MODULE: Conditional data loading giving me hard time, I will get it I swear !
+Algo was correct, function was broken... Surprise !: #JSON does NOT accept comments through external loading ! #brainfuck #JS #JSON.parse
+Conditional data loading then done in 10 mins, naturally !~~ hoyhoy~
+All loading working fine, dictionaries & monitoring files loaded as and where expected. The machine is rooling !
+Long due SAVE function implemented: data get persistant ! #localStorage is handsome
+Let's see the battle map: now time to attack the filter module !
+LIST MODULE: Could do better on this filter module, but this is good enough, and done.
+API MODULE: Filtering the main dataset from the list of target : smooth, but wait: could be dropt. : )
+Wondering: is the [{},{},{}] or the {k:{},k:{},k:{}} data structure better for this project! O0O @edouard_lopez #strore #process #JS #JSON
+Well, IndexedDB may be the suitable, heavy solution for persistant storage https://developer.mozilla.org/en-US/docs/IndexedDB/Using_IndexedDB
+TEMPLATING SIDE: ok, DONE !
+
+
+MONITORING SIDE: let's go !
+Some further fight around the data structure.
+SCORING MODULE: 
+Data scoring calculations at start : eventually working !
+Data sorting & saving at start, Implementation: Done!
+Data-UI synchronisation at start, implementation: Done ! 
+
+
+First ever list of best to learn chinese items.
+["的","我","你","是","了","不","在","他","好","有","这","就","会","吗","要","说","她","想","一","很","是的","人","吧","那","来","都","个","能","去","我们","没","和","到","对","也","啊","还","把","让","做","给","上","没有","一个","过","这个","得","看","就是","真","着","事","点","呢","只","别","哦","他们","但","被","走","不要","太","里","跟","你们","但是","再","听","快","那个","谁","还有","这里","多","用","下","天","像","它","从","好好","找","还是","最","可","为","不过","大","死","次","出","这么","不好","干","嘿","们","话","而","可能"]
+
+
+PERFORMENCE CHECK: added listeners to key points for measurements
+UI side: push toward Fontawesome, Bootstraps. Customisation needed. http://fontawesome.io/icons/
+
+DATA:
+Cleaned up my directory of data.
+Copyedited, structured CFDICT_stardict.txt.
+Regex for chinese characters string: [\x{4e00}-\x{9fa5}]+
+
+--------
+
+-@SOAS : 30-40 languages. @Inalco_Officiel: 93! Two different approaches ! @edouard_lopez @tatoeba_org @FrancoisTaddei http://www.soas.ac.uk/admissions/languages/list/ 
+
+-One evening, One Website on & elegant ! Structure done, content to come. #kickAsses pic.twitter.com/gw5KkjG9x4
+Embedded image permalink
+
+-I could not resist: this is the temporary landscape for our 2014 conference. #PLIDAM4 pic.twitter.com/8gzusH3dAB
+Embedded image permalink
+
+-Yeah! Just created my Github repo #PLIDAM2014 as well. #PLIDAM4 pic.twitter.com/NAq4FeYOhJ
+Embedded image permalink
+
+-2hours! Website prototype live on @CodioHQ ! so sweet~~~ https://codio.com/hugolpz/PLIDAM2014/tree/en/abstracts.html …
+
+-How to synchronize online #JS IDE code & #Github: answer on @CodioHQ's "Very basic GIT Tutorial" ! https://codio.com/s/docs/git/git-primer/#toc_5 … #easy
+
+-The FLOW (psychology) is mine tonight ! :D @edouard_lopez https://en.wikipedia.org/wiki/Flow_(psychology) …
+
+-Muahaha ! Integrating HTML5Boilerplate: Done ! @html5 @h5bp  http://html5boilerplate.com/  #PLIDAM4
+
+-$.ajax({ dataType: "jsonp", url: myurl }).done(function ( data ) {   // do my stuff }); //This is handsome !
+
+-Indeed: "XMLHttpRequest cannot load URL with jQuery>S1" lets wipe away need of JQuery + up #HandlebarsJS solidity! http://stackoverflow.com/questions/15747224#15747224 …
+
+-Wait: Minimal HandlebarsJS Demo http://bl.ocks.org/hugolpz/8075193  could be improved further, let's do it !
+
+-Seems the right time to migrate the website code to @CodioHQ for further hacks ! #PLIDAM4
+
+-Let's tinker a bit the CSS......
+
+-Downloading of #CEDIL2014 HTML/CSS codes & images: done ! #PLIDAM4
+
+-Hack started: I will use CEDIL (CC-by) + HandlebarsJS! @edouard_lopez
+
+-Raw materials: 1.CEDIL & 2.Barcamp[2] sites + #handlebarsJS  http://cedil2014.u-grenoble3.fr  http://barcampdeland.org/index.html  http://bl.ocks.org/hugolpz/8075193  #PLIDAM4
+
+-Let's start the hack: build a HTML & #HandlebarsJS website in one evening ! #PLIDAM4
+
+
+

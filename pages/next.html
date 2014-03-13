@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"><!--  -->
+    <title>my:Menu !</title>    
+    <!-- FRAMEWORKS -->
+    <script rel='script' src="../js/jquery-2.1.0.min.js"></script>
+    <script rel='script' src="../js/jquery.mobile-1.4.1.min.js"></script>
+	<link rel='stylesheet' href= '————o../cs s/jquery.mobile-1.4.1.min.css'>
+	
+	<script rel="script" src="../js/vendor.js"></script><!-- -->
+	<link rel='stylesheet' href='../styles/vendor.css'><!-- -->
+	<link rel='stylesheet' href='../styles/main.css'><!-- -->
+    <script rel='script' src='../js/handlebars.js'></script>
+    <!-- APPS -->
+    <script rel='script' src='../js/main.js'></script>
+	<link rel='stylesheet' href= '————o../cs s/Structure.css'><!---        useless ?           --->
+    <link rel='stylesheet' href='../css/mymain.css'><!---          buttons            --->
+    <!-- PAGE -->
+	<link rel='stylesheet' href='————ohttp://andymatthews.net/code/jQuery-Mobile-Bootstrap-Theme/themes/Bootstrap.css'>
+	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"><!---          useless ?           --->
+    <style>
+    /* See attached css file 
+    @import "http://netdna.bootstrapcdn.com/font-awesome/3.0/css/font-awesome.css"; */
+    /* http://jquerymobile.com/themeroller/?ver=1.3.0-rc.1&style_id=20130212-93 */
+
+    </style>
+
+</head>
+
+<body>
+  <div data-role="page" data-theme="b">
+  <header>
+	  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#cfdict-navbar-collapse"><span class="sr-only">Toggle navigation</span>  <span class="icon-bar"></span>  <span class="icon-bar"></span>  <span class="icon-bar"></span>
+            </button> <a href="index.html" class="navbar-brand"><img src="http://static.cfdict.fr/img/cfdict_icon_48x48.png" alt="CFDict"></a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <nav class="collapse navbar-collapse" id="cfdict-navbar-collapse">
+            <ul class="menu nav navbar-nav">
+                <li><a href="#/">Menu</a></li>
+                <li><a href="search.html">Dictionnaire</a></li>
+                <li><a href="next.html">Apprenable</a></li>
+                <li><a href="historic.html">Appris</a></li>
+                <li><a href="favorite.html">Favoris</a></li>
+                <li><a href="about.html">Encouragez nous!</a></li>
+            </ul>
+        </nav>
+    </div>
+</nav>
+	  
+	  </header><!-- /header -->
+
+<div id="hook" data-role="content container-fluid">
+<script id="tpl" type="text/template">
+	<div class="row tpl left-bd-indicator bg-success" data-lexeme="{{hant}}{{pyn}}" data-ort="{{hant}}" data-pyn="{{pyn}}">
+		<div class="col-xs-12 col-sm-9 col-md-9">
+		    <div class="sound btn fa fa-volume-up"><!--  -->♪</div>
+			<span class="ort">{{hant}} </span>
+			<span class="pho">{{pyn}}</span>: 
+			<span class="pos">{{pos}}. </span>
+			<span class="def">{{#l10n}}<span class="sem"> {{.}}</span>{{/l10n}}</span>
+		</div>
+		<div class="col-xs-12 col-sm-3 col-md-3"><!-- .btn-group not elegant-->
+		  <button class="knol btn btn-default fa fa-check pull-right"><!-- -->✓</button>
+		  <button class="favorite btn btn-default fa fa-star pull-right"><!--  -->★</button>
+        </div>
+	</div>
+    </script><!-- {{#fr}}<p>{{.}}</p>{{/fr}} : array fr, each element-->
+
+    </div><!-- /content -->
+  <footer></footer><!-- /footer -->
+      
+ <script> 																					var _0 = now();
+	//appendJQMHeader('Home'); 
+    //appendJQMFooter('—Hugo', 'JQM 1.3.1Beta');
+	 
+	// localStorage.removeItem("dict");
+	// localStorage.removeItem("knol");
+    
+    /* *********** LOADING DATA ********** */
+    var dict = loadJSONFile('https://codio.io/hugolpz/Cat-is-smart/data/dict-0050.json', "dict"); cl("D: "+JSON.stringify(dict) );
+    var knol = loadJSONFile('https://codio.io/hugolpz/Cat-is-smart/data/knol-5000.json', "knol"); cl("K: "/* + JSON.stringify(knol) */ ); var _A = now();
+    // knol = updateJsonScores(knol); 
+
+	 
+	 /* *********** PAGE INITIALISATION ********** */
+     //Preprocessing data
+         knol = sortJSON(knol, "score", "123");   				cl("S⚙: "); 				var _B  = now();
+     var knolShort = filterArray(knol, 100, "status", 1);  		cl("K.: "+JSON.stringify(knolShort) );
+     var list = getArray_Keys(knolShort, "hant"); 				cl("L: "+JSON.stringify(list) );
+  	// var url = buildUrlAPI("http://dev.cfdict.fr/api/hant/q/", list, "|"); console.log("U: "+url );
+	 var dictShort = filterArray_ifDuplicata(dict, 100, "hant", list); 	cl("D.: "+JSON.stringify(dictShort));	var _C  = now(); 
+
+	 //Data injection & styling
+	 injectTPL(dictShort, list, "#tpl", "#hook", "no");
+     setLexemeCss(knolShort, $(".tpl"));													var _D = now(); 
+	 
+
+     /* *********** PAGE INTERACTIONS ********** */
+     $(document).ready(function() {
+         $(".tpl .knol").click(function(){ //var sL_s = now(); 
+             switchStatus(knol, $(this).closest(".tpl") );   // edit data  
+             setLexemeCss(knol, $(this).closest(".tpl") );    // update screen
+             knol = saveObject(knol, "knol") ; 				 // persistant save (obj, lS)
+         });
+         $(".tpl .favorite").click(function(){
+             switchFavorite(knol, $(this).closest(".tpl") ); // edit data  
+             setLexemeCss(knol, $(this).closest(".tpl")   ); // update screen
+             knol = saveObject( knol, "knol" ); 				 // persistant save (obj, lS)
+         });
+    });																						var _E = now(); 
+     /* *********** APP PERFORMENCE TEST ********** */
+	 cl("A←0 load: "+ (_A-_0)/1000);
+	 cl("B←A sort: "+ (_B-_A)/1000);
+	 cl("C←B filt: "+ (_C-_B)/1000);
+	 cl("D←C injt: "+ (_D-_C)/1000);
+	 cl("E←0 _all: "+ (_E-_0)/1000);														var _F = now();
+	 cl("F←E calc: "+ (_F-_E)/1000);
+      </script>
+</div><!-- /page -->
+</body>
+</html>

@@ -10,51 +10,47 @@ $('header')
 
 function appendJQMFooter(left, right) {
 $('footer')
-  .append('<footer data-role="footer" data-theme="a" class="jqm-footer"><p>&copy;'+left+'!</p><p class="jqm-version">—'+right+'</p></footer>');
+  .append('');
 }
 
-
-/* ######################### DATA: ####################################  */
-// See : data/status-starter.json ; data/cfdict.json
-
-//Meta.Fn: loadFileJson (first App run)
-function loadFileJSON(toLocalStorage, fromUrl) {
-    if (localStorage[toLocalStorage]) { console.log("Good! Data already loaded locally!"); } 
-    else { 
-        $.getJSON(fromUrl, function (data) {
-            localStorage[toLocalStorage] = JSON.stringify(data);
-            console.log("Damn! Data not yet loaded locally! Ok: I loaded it!");
-            console.log("Data string: " + localStorage[toLocalStorage]);
-        });
+/* ############## MAKESTAMP ###################  */
+//META.Fn: makeStamp() create a timestamp yyyyMMDDhhmmss
+    function makeStamp(d) { // Date d
+        var y = d.getUTCFullYear(),
+            M = d.getUTCMonth() + 1,
+            D = d.getUTCDate(),
+            h = d.getUTCHours(),
+            m = d.getUTCMinutes(),
+            s = d.getUTCSeconds();
+            ms = d.getUTCMilliseconds();
+        function pad(x) { // or pad = function(x) {}; call etant pad(...);
+                x = x+'';
+                if (x.length === 1) { return '0' + x;}
+                return x;
+            }
+        function pad2(x) { // or pad = function(x) {}; call etant pad(...);
+                x = x+'';
+                if (x.length === 1) { return '00' + x; }
+                if (x.length === 2) { return '0'  + x; }
+                return x;
+            }
+        return y + pad(M) + pad(D) + pad(h) + pad(m) + pad(s) + pad2(ms);
     }
-}
-
-// loadFileJSON( 'jsonStatus0711b', 'http://d.codio.com/hugolpz/Cat-is-smart/data/status-starter.json');
-// var json = JSON.parse( localStorage.jsonStatus0710b ); 
-
-/* To store JSON in localStorage, you compress it as string */
-// localStorage["results"] = JSON.stringify(jsonStatus); // or lS.restults
-/* Whenever you want to work on it, need to uncompress the JSON */
-// var json = JSON.parse(localStorage["results"]);
-
-
-/* ############## JSON: getVal, PUSHVAL, setJsonDate, makeSTAMP ###################  */
-// TODO : to align into 
-
+/* ############## JSON EDITS UTILIES ###################  */ // <-------- To align
 //META.Fn: getVal
 function getJsonVal(json, itemId) {  
     for (var i in json) {
-        if (json[i].zh == itemId) {
+        if (json[i].zh === itemId) {
             return json[i]; //.rank
+            break;
         }
     }
 }
 
-/* ----- PUSH SERIE ---- */
 //META.Fn: pushVal.status
 function setJsonStatus(json, itemId, val) {
     for (var i in json) {
-        if (json[i].zh == itemId) {
+        if (json[i].zh === itemId) {
             json[i].status = val;
             break;
         }
@@ -64,7 +60,7 @@ function setJsonStatus(json, itemId, val) {
 //META.Fn: pushVal.date
 function setJsonDate(json, itemId, val) {
     for (var i in json) {
-        if (json[i].zh == itemId) {
+        if (json[i].zh === itemId) {
             json[i].date = val;
             break;
         }
@@ -74,7 +70,7 @@ function setJsonDate(json, itemId, val) {
 //META.Fn: pushVal.favorite
 function setJsonFavorite(json, itemId, val) {
     for (var i in json) {
-        if (json[i].zh == itemId) {
+        if (json[i].zh === itemId) {
             json[i].favorite = val;
             break;
         }
@@ -83,12 +79,12 @@ function setJsonFavorite(json, itemId, val) {
 
 //META.Fn: pushVal.score /RBSC9/9/
 function setJsonScore(json, itemId) {
-    // 1. Mass of compounds (zis):
+    // 1. Mass of components (zis):
     var c = itemId.split("");
     var sum = 0;
     console.log("c = " + c);
     for (i in c) {
-        console.log("c[i] = " + c[i]);
+        console.log(itemId+"["+i+"] = " + c[i]);
         sum = sum + (getJsonVal(json, c[i]).status * getJsonVal(json, c[i]).rank); // <-------- Formula (components mass)
         console.log("sum = " + sum + "(i:" + i + ")");
         i = i + 1;
@@ -106,42 +102,63 @@ function setJsonScore(json, itemId) {
     } return json;   
 }
 
-//META.Fn: makeStamp() create a timestamp yyyyMMDDhhmmss
-    function makeStamp(d) { // Date d
-        var y = d.getUTCFullYear(),
-            M = d.getUTCMonth() + 1,
-            D = d.getUTCDate(),
-            h = d.getUTCHours(),
-            m = d.getUTCMinutes(),
-            s = d.getUTCSeconds();
-            ms = d.getMilliseconds();
-        function pad(x) { // or pad = function(x) {}; call etant pad(...);
-                x = x+'';
-                if (x.length === 1) { return '0' + x;}
-                return x;
-            }
-        function pad2(x) { // or pad = function(x) {}; call etant pad(...);
-                x = x+'';
-                if (x.length === 1) { return '00' + x; }
-                if (x.length === 2) { return '0'  + x; }
-                return x;
-            }
-        return y + pad(M) + pad(D) + pad(h) + pad(m) + pad(s) + pad2(ms);
-    }
 
+/* ################ ORDER: SUFFLE, KEEP ORDER ###################### */
+
+/* META.Fn: Shuffle */
+function shuffle(o){ //v1.0
+    for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+    return o;
+}
+
+/* META.Fn: Same (alternative to fn.Shuffle) */
+function same(o){ 
+   return o;
+}
+
+/* ################ ORDER: SCORES, SORT ###################### */
+
+//META.fn: sortJSON
+function sortJSON(lSdata, key, way) {
+    json = JSON.parse(lSdata)
+            .sort(function(a, b) {
+                var x = a[key]; var y = b[key];
+                if (way === '123') {return ((x < y) ? -1 : ((x > y) ? 1 : 0));}
+                if (way === '321') {return ((x > y) ? -1 : ((x < y) ? 1 : 0));}
+            });
+    return lSdata = JSON.stringify(json);
+}
+
+//META.Fn: update all scores
+function updateJsonScores(lSdata) {
+    json = JSON.parse(lSdata);
+    console.log("JS: parsed!"+ lSdata);
+    for (var j in json) {
+        setJsonScore(json, json[j].zh);
+    }
+    return lSdata = JSON.stringify(json);
+    console.log("JS: stringified!");
+    console.log("current stringTarget:" + lSdata);
+    json = JSON.parse(lSdata); //???
+}
+
+/*
+$(function() { 
+can put all the code into this function but I don't want to.
+});
+*/
 
 
 /* ######################### SWITCH: CSS-JS ####################################  */
-
 
     //META.Fn: loadSwitch [localStorage  => CSS]
     function setLexemeStatusCSS() {
         console.log("setLexemeStatusCSS = Fired !");
         $("button").each(function a(i) {
-            console.log("lexeme1");
             var lexeme = $(this).data('lexeme');
-            console.log("lexeme = " + lexeme);
+            console.log("lexeme n⁰"+i+" = " + lexeme);
             var val = getJsonVal(json, lexeme);
+            console.log(JSON.stringify(json));
            //setTimeout(function () {
                 if (val.status === 1) {
                     $(this).toggleClass('status1 status0');
@@ -153,7 +170,7 @@ function setJsonScore(json, itemId) {
     
 
     //META.Fn: clickSwitch [localStorage & CSS]
-    function clickChangeLexemeStatus() {
+    function switchLexemeStatus() {
         var lexeme = $(this).closest(".tpl").data('lexeme');
         var val = getJsonVal(json, lexeme); //pull
         console.log("3. Button clicked & lexeme updated is:" + lexeme+".    Former value was:"+val.status);
@@ -170,63 +187,49 @@ function setJsonScore(json, itemId) {
         console.log("4. After click & compiled JSON:" + JSON.stringify(json));
     } // end button Fn.clickSwitch
 
+/* ######################### DATA: ####################################  */
+// See : data/status-starter.json ; data/cfdict.json
 
-/* ################ SUFFLE, KEEP ORDER, SORT ###################### */
-
-/* META.Fn: Shuffle */
-function shuffle(o){ //v1.0
-    for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
-    return o;
-}
-
-/* META.Fn: Same (alternative to fn.Shuffle) */
-function same(o){
-    o = o;
-}
-
-//META.fn: sortJSON
-function sortJSON(data, key, way) {
-    return data.sort(function(a, b) {
-        var x = a[key]; var y = b[key];
-        if (way === '123') {return ((x < y) ? -1 : ((x > y) ? 1 : 0));}
-        if (way === '321') {return ((x > y) ? -1 : ((x < y) ? 1 : 0));}
-    });
-}
-
-
-//META.Fn: update all scores
-function updateJsonScores(stringTarget) {
-    json = JSON.parse(stringTarget);
-    console.log("JS: parsed!"+ stringTarget);
-    for (var j in json) {
-        setJsonScore(json, json[j].zh);
+//Meta.Fn: loadFileJson (first App run)
+function loadFileJSON(fromUrl, toLocalStorage) {
+    var json;
+    if (localStorage[toLocalStorage]) { 
+        console.log("Good! Data already loaded locally!");
+        json = JSON.parse(localStorage[toLocalStorage]);
+    } 
+    else { 
+        $.getJSON(fromUrl, function (data) {
+            localStorage[toLocalStorage] = JSON.stringify(data);
+            json = data;
+            console.log("NB: Data not yet loaded locally! ⇒  I loaded it!");
+            console.log("Data string: " + localStorage[toLocalStorage]);
+        });
     }
-    stringTarget = JSON.stringify(json);
-    console.log("JS: stringified!");
-    console.log("current stringTarget:" + stringTarget);
-    json = JSON.parse(stringTarget); //???
 }
 
-/*
-$(function() { 
-can put all the code into this function but I don't want to.
-});
-*/
+// loadFileJSON( 'jsonStatus0711b', 'http://d.codio.com/hugolpz/Cat-is-smart/data/status-starter.json');
+// var json = JSON.parse( localStorage.jsonStatus0710b ); 
 
-/* ######################### TEMPLATING: FOCUSLIST: ####################################  */
+/* To store JSON in localStorage, you compress it as string */
+// localStorage["results"] = JSON.stringify(jsonStatus); // or lS.restults
+/* Whenever you want to work on it, need to uncompress the JSON */
+// var json = JSON.parse(localStorage["results"]);
+
+/* ######################### TEMPLATING: UTILITIES: ####################################  */
 
 /* META.fn: getMyList                   See: /hugolpz/WKcGr/   */
 // :def: get the list of n next unkown lexies. Do: slice unknow, sort, slice n lexies, return zh keys
-// @lSdata : localStorage data, is store as string, JSON.parse() run on it.
+// @lSdata : localStorage variable storing up to date status data as string, JSON.parse() run on it.
 // @n: number n of unknow lexies to get.
+// @status: 1 is unknow, 0.01 is unknow
 // @: need more parameters for: lexem length, date/historic, favorite.   < --------------------------------------------------------- Todo
-function getMyList(lSdata, n) {      // < --------------------------------------------------------------------------- Add attributes
-    var result = JSON.parse(localStorage[lSdata])
+function getMyList(lSdata, n, status) {      // < --------------------------------------------------------------------------- Add attributes
+    var list = JSON.parse(localStorage[lSdata])
    .filter(function (i) {
-        return i["status"] === 1 ; //slice status=1 (condition)
+        return i["status"] === status ; //slice status=1 (condition)
     })/*
     .filter(function (i) {
-        return i["zh"].length =3; //slice status=1 (condition)
+        return i["zh"].length = 3; //slice 3 characters words only (condition)
     }) */
     .sort(function (a, b) {
         return a["score"] - b["score"]; //sort 
@@ -235,25 +238,25 @@ function getMyList(lSdata, n) {      // < --------------------------------------
     .map(function (i) { 
         return i["zh"]; //return keys
     });
-    return result;
+    return list;
 }
 
 
 /* ######################### TEMPLATING: PROJECTION ####################################  */
 /* META.fn: injectTPL (mustache). See: /hugolpz/WKcGr/ */ 
 // :def: inject the items within the body's anchor
-// @url: url of json dictionary
-// @list: list (object) of keys for items to display
-// @tplId: html id of js template within the html page
-// @anchor: html id of the html anchor/container to receive the items.
-function injectTPL(url, list, tplId, anchor, callback) {
+// @"url": str of url for json dictionary, relative or absolute
+// @list: var-object of keys for items to display
+// @"tplId": str of html id of js template within the html page
+// @"anchor": str of html id of the html anchor/container to receive the items.
+var injectTPL = function (url, list, $tpl, $anchor, callback) {
     console.log("Handlebars TPL = Fired !");
     $.getJSON(url, function(data) {
         for (var i=0; i<list.length; i++) {
             var lexeme = list[i]; // "火山口";
-            var template = '{{#CFDICT}}{{#'+ lexeme +'}}' + $(tplId).html() + '{{/'+ lexeme +'}}{{/CFDICT}}';
+            var template = '{{#CFDICT}}{{#'+ lexeme +'}}' + $($tpl).html() + '{{/'+ lexeme +'}}{{/CFDICT}}';
             var stone = Handlebars.compile(template)(data);
-            $(anchor).append(stone);
+            $($anchor).append(stone);
         }
         callback();  // Invoke our own callback.
     });
@@ -271,3 +274,4 @@ TO DO:
 2. Parse/Stringify workflow.
 
 */
+/* STABLE STATE HERE */
