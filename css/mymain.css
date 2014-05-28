@@ -1,22 +1,23 @@
 /* APPS.style */
-html {
-  height: 100%;
-}
-body {
-  height: 100%;
-}
 * { transition: 0.6s; }
+/*******************************************/
+/*                STRUCTURE                */
+/*******************************************/
+html, body, #hook { 
+	height: 100%; width: 100%; 
+	margin: 0em; /* ugly: fix so body stick to header */
+	padding: 0;
+}
+hearder, .navbar { 
+	margin: 0; /* ugly: fix so body stick to header */
+	padding: 0;
+}
+#hook { margin-top: 50px; font-size: 1em; color: #333; }
+.row, .row > div:first-child { margin: 0; }
+.tpl { border-top: 1px solid #CCC; }
 
 /*******************************************/
-/*                HOOK BOX                 */
-/*******************************************/
-/* TPL Anchor box: */
-#hook { padding: 0; font-size: 1em;}
-#hook p { margin: 0.1em; color: #333 }
-
-
-/*******************************************/
-/*                         DICT-LIST                       */
+/*                LEXICOGRAPHIC                       */
 /*******************************************/
 /* Lexicography > color */
 .tpl { font-size: 1em;}
@@ -55,15 +56,27 @@ def:nth-child(10):before { content: "; ⑩"; font-size: 1.5em; }
 */
 
 /*******************************************/
-/*               MONITORING                   */
+/*              INTERACTIONS               */
 /*******************************************/
-.sound, .knol, .favorite { font-size: 1em; color:grey; }
+.sound, .knol, .favorite { font-size: 2em; color:grey; }
+
+/*******************************************/
+/*                EXERCICES                */
+/*******************************************/
+/* Exercice: next.html */
+.next > div:nth-of-type(1) { padding: 0 0.5em 0 1em; }
+.next > div:nth-of-type(2) { padding: 0 1em 0 0; }
+
+
+
+/*******************************************/
+/*               MONITORING                */
+/*******************************************/
 
 .tpl[data-status="1"   ] .knol { color:grey;  }
 .tpl[data-status="0.01"] .knol { color:green;}
 .tpl[data-favorite="1" ] .favorite { color:yellow; }
 .tpl[data-favorite="0" ] .favorite { color:grey; }
-
 
 .left-bd-indicator { /*structure */
 	border-left: 0.5em solid #eee;
@@ -76,26 +89,18 @@ def:nth-child(10):before { content: "; ⑩"; font-size: 1.5em; }
 .bg-info 	{ background-color: #d9edf7; }  
 .bg-warning { background-color: #fcf8e3; } 
 .bg-danger  { background-color: #f2dede; }
-
+/* left-bd-indicators */
 .bd-neutral { border-color: #CCC;    }
-.bd-primary { border-color: #428bca; }
-.bd-success { border-color: #5cb85c; }
+.bd-primary { border-color: #428bca; border-top-color: #CCC;}
+.bd-success { border-color: #5cb85c; border-top-color: #CCC;}
 .bd-info 	{ border-color: #5bc0de; }
 .bd-warning { border-color: #fbeed5; } /*dark: #f0ad4e ; light: #fbeed5;*/
 .bd-danger  { border-color: #d9534f; }
-.tpl { border-top: 1px solid #CCC;   }
-/*
-.row { display:table !important; }
 
-.sound, .knol, .favorite {
-    height: 100%;
-    display:table-cell;
-    vertical-align:middle;
-    text-align: inherit;
-} */
+
 
 /*******************************************/
-/*                       BUTTONS                        */
+/*                  DARK BUTTONS                        */
 /*******************************************/
 /* BUTTONS> text: */
 

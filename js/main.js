@@ -1,5 +1,5 @@
 /* ############################################################################# */
-/* ################module:###       0.    M E T A & G U I D E L I N E S       ################ */
+/* ###############module: #####  0. M E T A & G U I D E L I N E S  ############# */
 /* ############################################################################# * /
  * runMyFunction: 
  * myParametter:
@@ -7,7 +7,7 @@
 
 
 /* ############################################################################# */
-/* ################module:###       1.    W R A P P I N G  & T R I V I A     ####################### */
+/* ###############module: #####  1. W R A P P I N G  & T R I V I A  ############ */
 /* ############################################################################# */
 var cl = function (message) { console.log(message);};
 var now = function() { return timeStamp( new Date()); };
@@ -15,7 +15,25 @@ var now = function() { return timeStamp( new Date()); };
 function appendJQMHeader(pageTitle) {
 $('header')
   .append(
-    '+');
+'<nav class="navbar navbar-default navbar-fixed-top" role="navigation">'
++'	<div class="container-fluid">'
++'		<!-- Brand and toggle get grouped for better mobile display -->'
++'		<div class="navbar-header">'
++'			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#cfdict-navbar-collapse"><span class="sr-only">Toggle navigation</span>  <span class="icon-bar"></span>  <span class="icon-bar"></span>  <span class="icon-bar"></span>'
++'			</button> <a href="index.html" class="navbar-brand"><img src="http://static.cfdict.fr/img/cfdict_icon_48x48.png" alt="CFDict"></a>'
++'		</div>'
++'		<!-- Collect the nav links, forms, and other content for toggling -->'
++'		<nav class="collapse navbar-collapse" id="cfdict-navbar-collapse">'
++'			<ul class="menu nav navbar-nav">'
++'				<li><a href="search.html"><i class="fa fa-search" alt="Dictionnaire"></i></a></li>'
++'				<li><a href="next.html"><i class="fa fa-play" alt="Apprenable"></i></a></li>'
++'				<li><a href="favorite.html"><i class="fa fa-star" alt="Favoris"></i></a></li>'
++'				<li><a href="historic.html"><i class="fa fa-check" alt="Appris"></i></a></li>'
++'				<li><a href="about.html"><i class="fa fa-github" alt="Team!"></i></a></li>'
++'			</ul>'
++'		</nav>'
++'	</div>'
++'</nav>');
 }
 
 function appendJQMFooter(left, right) {
@@ -77,7 +95,7 @@ var sortJSON = function (object, key, way) {
     return data;
 };
 /* ############################################################################# */
-/* ################module: ###       2.    L O A D I N G          ########################### */
+/* ###############module: #####  2. L O A D I N G  ############################# */
 /* ############################################################################# */
 /* To store JSON in localStorage, you compress it as string */
 // localStorage["results"] = JSON.stringify(jsonStatus); // or lS.restults
@@ -189,10 +207,10 @@ var getList_Item = function (objectplus, list, key) {
 
 /* META.fn: stringifyArray    http://jsfiddle.net/UJ3NX/3/
  * :def: buil a valid API request url from core API url, array of values & separators
- * @api: root url of the api to request           --str
- * @array: list of values                              --obj
- * @separator: separator to be added            --str
- * @return: api url + string of values & serparators      --str  */
+ * @api: root url of the api to request 					--str
+ * @array: list of values  									--obj
+ * @separator: separator to be added 						--str
+ * @return: api url + string of values & serparators 		--str  */
 var buildUrlAPI = function (api, array, separator){
     var newList= array[0]+"";
     for(i=1; i<list.length; i++){
@@ -249,7 +267,7 @@ var injectTPL = function (dataORurl, list, $tpl, $hook, indexed, callback) {
 };
 
 /* ############################################################################# */
-/* ################module: ###     3.  M O N I T O R I N G     ########################### */
+/* ###############module: #####  3.  M O N I T O R I N G  ###################### */
 /* ############################################################################# */
 
 //META.Fn: getVal

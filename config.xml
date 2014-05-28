@@ -22,8 +22,7 @@
     <preference name="fullscreen"       value="false" />
 	<preference name="android-installLocation" value="auto" />
 
-<icon src="icon.png" />
-<!--
+<icon src="icon.png" /><!--
     <icon src="res/icon/android/icon-36-ldpi.png"   gap:platform="android"    gap:density="ldpi" />
     <icon src="res/icon/android/icon-48-mdpi.png"   gap:platform="android"    gap:density="mdpi" />
     <icon src="res/icon/android/icon-72-hdpi.png"   gap:platform="android"    gap:density="hdpi" />
@@ -33,8 +32,8 @@
     <icon src="res/icon/ios/icon-57-2x.png"         gap:platform="ios"        width="114" height="114" />
     <icon src="res/icon/ios/icon-72-2x.png"         gap:platform="ios"        width="144" height="144" />
     <icon src="res/icon/wp/icon.png"                gap:platform="winphone"   width="62" height="62"/>
-    <icon src="res/icon/wp/tileicon.png"            gap:platform="winphone"   gap:role="background"   width="173" height="173"/>
-<gap:splash src="splash.png" />
+    <icon src="res/icon/wp/tileicon.png"            gap:platform="winphone"   gap:role="background"   width="173" height="173"/> -->
+<gap:splash src="splash.png" /><!--
     <gap:splash src="res/screen/android/screen-ldpi-portrait.png"  gap:platform="android" gap:density="ldpi" />
     <gap:splash src="res/screen/android/screen-mdpi-portrait.png"  gap:platform="android" gap:density="mdpi" />
     <gap:splash src="res/screen/android/screen-hdpi-portrait.png"  gap:platform="android" gap:density="hdpi" />
@@ -43,6 +42,5 @@
     <gap:splash src="res/screen/ios/screen-iphone-portrait-2x.png" gap:platform="ios"     width="640" height="960" />
     <gap:splash src="res/screen/ios/screen-ipad-portrait.png"      gap:platform="ios"     width="768" height="1024" />
     <gap:splash src="res/screen/ios/screen-ipad-landscape.png"     gap:platform="ios"     width="1024" height="768" />
-    <gap:splash src="res/screen/wp/wp.jpg" gap:platform="winphone" width="480" height="800" />
--->
+    <gap:splash src="res/screen/wp/wp.jpg" gap:platform="winphone" width="480" height="800" /> -->
 </widget>

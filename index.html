@@ -2,19 +2,24 @@
 <html>
 <head>
  <meta charset="UTF-8">
-
+	<meta name="viewport" content="width=device-width, initial-scale=1"><!--  -->
     <title>my:Menu !</title>    
     <!-- FRAMEWORKS -->
-    <script rel='script'  src="./js/jquery-2.1.0.min.js"></script>
-    <script  rel='script' src="./js/jquery.mobile-1.4.1.min.js"></script>
-    <link rel='stylesheet' href='./css/jquery.mobile-1.4.1.min.css'>
-    <script rel='script' src='./js/handlebars.js'></script>
+    <script rel='script' src="../js/jquery-2.1.0.min.js"></script>
+    <script rel='script' src="../js/jquery.mobile-1.4.1.min.js"></script>
+	<link rel='stylesheet' href= '————o../cs s/jquery.mobile-1.4.1.min.css'>
+	
+	<script rel="script" src="../js/vendor.js"></script><!-- -->
+	<link rel='stylesheet' href='../styles/vendor.css'><!-- -->
+	<link rel='stylesheet' href='../styles/main.css'><!-- -->
+    <script rel='script' src='../js/handlebars.js'></script>
     <!-- APPS -->
-    <script rel='script' src='./js/main.js'></script>
-    <link rel='stylesheet' href='./css/Structure.css'><!---        useless ?           --->
-    <link rel='stylesheet' href='./css/mymain.css'><!---          buttons            --->
+    <script rel='script' src='../js/main.js'></script>
+	<link rel='stylesheet' href= '————o../cs s/Structure.css'><!---        useless ?           --->
+    <link rel='stylesheet' href='../css/mymain.css'><!---          buttons            --->
     <!-- PAGE -->
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"><!---          useless ?           --->
+	<link rel='stylesheet' href='————ohttp://andymatthews.net/code/jQuery-Mobile-Bootstrap-Theme/themes/Bootstrap.css'>
+	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"><!---          useless ?           --->
     <style>
     /* See attached css file 
     @import "http://netdna.bootstrapcdn.com/font-awesome/3.0/css/font-awesome.css"; */
@@ -25,54 +30,42 @@
 </head>
 
 <body>
-	<div data-role="page" data-theme="b">
-  <header></header><!-- /header -->
-  
-  
+  <div data-role="page" data-theme="b">
+  <header>
+
+	  
+	  </header><!-- /header -->
 	<div data-role="content">	
-   <p align="center"><!--521/136-->
-    <img src="http://goo.gl/uplhN" alt="Cat is Smart: Learn what your brain want!" height="89" /><!--http://goo.gl/X3W9Q garfield ; http://goo.gl/BImnC petit chat -->
-  </p>
+  		 <p align="center"><!--521/136-->
+   			 <img src="http://goo.gl/uplhN" alt="Cat is Smart: Learn what your brain want!" height="89" /><!--http://goo.gl/X3W9Q garfield ; http://goo.gl/BImnC petit chat -->
+ 		 </p>
+		<></d
+    </div><!-- /content -->
+  <footer></footer><!-- /footer -->
+      
+ <script> 																					var _0 = now();
+	appendJQMHeader('Home'); 
+    //appendJQMFooter('—Hugo', 'JQM 1.3.1Beta');
+	 
+	// localStorage.removeItem("dict");
+	// localStorage.removeItem("knol");
     
-  
-    <p><em>Cat is Smart</em> note les sinogrammes déjà appris pour vous ramener les mots nouveaux à la fois les plus utiles et les plus accessibles pour <em>votre</em> mémoire. </p>
-  I take:
-  <ul data-role="listview" data-inset="true">
-    <li><a href="" data-transition="slide"><span class="icon-star"></span>
-      <span>What I Know</span></a></li>
-    <li><a href="" data-transition="slide"><span class="icon-picture"></span>
-      <span class="text">Explorations</span></a></li>
-	  <li><a href="pages/next.html" data-transition="slide"><span class="icon-link"></span>
-        <span class="text">Words I may know</span> </a></li>
-  </ul>
-    
-<div data-role="collapsible" data-corners="true"  data-content-theme="c">
-  <h2 class="ui-collapsible-heading">Postponed:</h2>
-  <ul data-role="listview">
-    <li><a href=".php" data-transition="slide"><span class="icon-pencil"></span>
-        <span class="text">Writing shots</span></a></li>
-    <li><a href=".php" data-transition="slide"><span class="icon-lightbulb"></span>
-        <span class="text">Review to memorize</span></a></li>
-    <li><a href=".php" data-transition="slide"><span class="icon-search"></span>
-        <span class="text">Dictionary to check aspects</span></a></li>
-    <li><a href=".php" data-transition="slide"><span class="icon-headphones"></span>
-        <span class="text">Radios</span></a></li>
-    <li><a href=".php" data-transition="slide"><span class="icon-facetime-video"></span>
-      <span class="text">Subtitled video</span></a></li>
-    <li><a href=".php" data-transition="slide"><span class="icon-user"></span>
-      <span class="text">Go practices!</span></a></li>
-	</ul>
- </div>
-    
-  
-	</div><!-- /content -->
+    /* *********** LOADING DATA ********** */
+    var dict = loadJSONFile('https://codio.io/hugolpz/Cat-is-smart/data/dict-0050.json', "dict"); cl("D: "+JSON.stringify(dict) );
+    var knol = loadJSONFile('https://codio.io/hugolpz/Cat-is-smart/data/knol-5000.json', "knol"); cl("K: "/* + JSON.stringify(knol) */ ); var _A = now();
+    // knol = updateJsonScores(knol); 
+
+	 
+	 /* *********** PAGE INITIALISATION ********** */
+     //Preprocessing data
+         knol = sortJSON(knol, "score", "123");   				cl("S⚙: "); 				var _B  = now();
+     var knolShort = filterArray(knol, 100, "status", 1);  		cl("K.: "+JSON.stringify(knolShort) );
+     var list = getArray_Keys(knolShort, "hant"); 				cl("L: "+JSON.stringify(list) );
+  	// var url = buildUrlAPI("http://dev.cfdict.fr/api/hant/q/", list, "|"); console.log("U: "+url );
+	 var dictShort = filterArray_ifDuplicata(dict, 100, "hant", list); 	cl("D.: "+JSON.stringify(dictShort));	var _C  = now(); 
 
 
-  <footer></footer><!-- /jqm-footer -->
-	<script>
-		appendJQMHeader('Home'); 
-		appendJQMFooter('—toto', 'JQM 1.3.1Beta'); 
-	</script>
+      </script>
 </div><!-- /page -->
-	</body>
-	</html>
+</body>
+</html>
