@@ -45,7 +45,7 @@
 			<span class="def">{{#l10n}}<span class="sem"> {{.}}</span>{{/l10n}}</span>
 		</div><!--
 		--><div class="col-xs-3 col-sm-3 col-md-3 vcenter"><!-- .btn-group not elegant-->
-		  <e class="favorite fa fa-star pull-right"><!-- ★  --></e>
+		  <e class="favorite fa fa-star-o pull-right"><!-- ★  --></e>
 		  <e class="knol fa fa-check pull-right"><!-- ✓ --></e>
         </div>
 	</div>
@@ -69,9 +69,10 @@
 	 
 	 /* *********** PAGE INITIALISATION ********** */
      //Preprocessing data
-         knol = sortJSON(knol, "score", "123");   				cl("S⚙: "); 				var _B  = now();
-     var knolShort = filterArray(knol, 10000, "status", 1);  		cl("K.: "+JSON.stringify(knolShort) );
-     var list = getArray_Keys(knolShort, "hant"); 				cl("L: "+JSON.stringify(list) );
+         knol = sortJSON(knol, "f_date", "321");   				cl("S⚙: "); 				var _B  = now();
+     var knolShort = filterArray(knol, 10000, "favorite", 1);  		cl("K.: "+JSON.stringify(knolShort) );
+     var knolShort = sortJSON(knolShort, "f_date", "321");  
+	 var list = getArray_Keys(knolShort, "hant"); 				cl("L: "+JSON.stringify(list) );
   	// var url = buildUrlAPI("http://dev.cfdict.fr/api/hant/q/", list, "|"); console.log("U: "+url );
 	 var dictShort = filterArray_ifDuplicata(dict, 10000, "hant", list); 	cl("D.: "+JSON.stringify(dictShort));	var _C  = now(); 
 

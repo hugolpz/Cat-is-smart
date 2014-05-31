@@ -8,6 +8,11 @@ html, body, #hook { height: 100%; width: 100%; }
 #hook { margin-top: 50px; }
 .tpl { border-top: 1px solid #CCC; }
 .row { margin: 0; }
+.vcenter { /* row > div */
+		display: inline-block;
+		vertical-align: middle;
+		float: none;
+}
 /*******************************************/
 /*              PAGE SPECIFIC              */
 /*******************************************/

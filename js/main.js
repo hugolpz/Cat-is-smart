@@ -149,6 +149,9 @@ var addIndex = function(object, key1, key2){
 };
 
 /* ######################### TEMPLATING: UTILITIES: ####################################  */
+/* ######################### STANDARDIZE NAMES: ####################################  */
+/* ######################### STANDARDIZE NAMES: ####################################  */
+/* ######################### STANDARDIZE NAMES: ####################################  */
 
 /* META.fn: getList_Index                  http://hugolpz/WKcGr/   
  * :def: get the list of n next unkown lexies. Do: slice unknow, sort, slice n lexies, return zh keys

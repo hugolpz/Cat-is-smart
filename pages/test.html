@@ -30,31 +30,19 @@
   <div data-role="page" data-theme="b">
   <header></header><!-- /header -->
 
-<div id="hook" data-role="content .container-fluid">
+<div id="hook" data-role="content .container-fluid"></div>
 <script id="tpl" type="text/template">
-	<div class="row tpl next left-bd-indicator bg-success" data-lexeme="{{hant}}{{pyn}}" data-ort="{{hant}}" data-pho="{{pyn}}">
-		<div class="col-xs-9 col-sm-9 col-md-9 vcenter">
+        <div class="tpl btn btn-default zi-test-entry" data-lexeme="{{hant}}{{pyn}}" data-ort="{{hant}}" data-pho="{{pyn}}">
 			<audio src="../cmn/audio/cmn-{{pyn}}.mp3"></audio>
-		    <e class="sound fa fa-play" ><!-- ♪ --></e>
-<!--			<button onclick="new Howl({             			-->
-<!--		 	 urls: ['../cmn/audio/cmn-{{pyn}}.mp3']             -->
-<!--			}).play();">♪</button>                              -->
-			<span class="ort">{{hant}} </span>
-			<span class="pho">{{pyn}}</span>: 
-			<span class="pos">{{pos}}. </span>
-			<span class="def">{{#l10n}}<span class="sem"> {{.}}</span>{{/l10n}}</span>
-		</div><!--
-		--><div class="col-xs-3 col-sm-3 col-md-3 vcenter"><!-- .btn-group not elegant-->
-		  <e class="favorite fa fa-star pull-right"><!-- ★  --></e>
-		  <e class="knol fa fa-check pull-right"><!-- ✓ --></e>
-        </div>
-	</div>
-    </script><!-- {{#fr}}<p>{{.}}</p>{{/fr}} : array fr, each element-->
+			<span class="ort">{{hant}}</span><br />
+			<span class="pho">{{pyn}}</span>
+		</div>
+</script>  
 
     </div><!-- /content -->
   <footer></footer><!-- /footer -->
       
- <script> 																					var _0 = now();
+<script> 																					var _0 = now();
 	appendJQMHeader('Home'); 
     //appendJQMFooter('—Hugo', 'JQM 1.3.1Beta');
 	 
