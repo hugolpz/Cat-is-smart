@@ -1,0 +1,8 @@
+[
+	{ "href":"pages/search", "icon":"fa fa-search", "title":"Dictionnaire", "text":"The basis, a searchable electronic dictionary." },
+	{ "href":"pages/test", "icon":"fa fa-bar-chart-o", "title":"Test", "text":"Tell us what do you know." },
+	{ "href":"pages/next", "icon":"fa-graduation-cap", "title":"Good to learn", "text":"According to previous knowledges, there are the good words to learn." }, //fa fa-crosshairs, fa fa-rocket
+	{ "href":"pages/favorite", "icon":"fa fa-star", "title":"Favoris", "text":"Gather words you wish to focus on! Most recent on the top." },
+	{ "href":"pages/historic", "icon":"fa fa-check", "title":"Learned (recent)", "text":"Here are all what you learnt, the most recent on the top."}
+// { "href"="", "icon"="", "title"=""}
+]
