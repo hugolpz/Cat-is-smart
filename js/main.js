@@ -19,8 +19,9 @@ $('header')
 +'	<div class="container-fluid">'
 +'		<!-- Brand and toggle get grouped for better mobile display -->'
 +'		<div class="navbar-header">'
++'			<a href="index.html" class="navbar-brand" style="padding: 1px 1px 1px 3px;"><img src="http://static.cfdict.fr/img/cfdict_icon_48x48.png" alt="CFDict"></a>'
 +'			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#cfdict-navbar-collapse"><span class="sr-only">Toggle navigation</span>  <span class="icon-bar"></span>  <span class="icon-bar"></span>  <span class="icon-bar"></span>'
-+'			</button> <a href="index.html" class="navbar-brand"><img src="http://static.cfdict.fr/img/cfdict_icon_48x48.png" alt="CFDict"></a>'
++'			</button>'
 +'		</div>'
 +'		<!-- Collect the nav links, forms, and other content for toggling -->'
 +'		<nav class="collapse navbar-collapse" id="cfdict-navbar-collapse">'
@@ -177,7 +178,7 @@ var getArray_Keys = function(array, returnKey) { var list = array.map(function (
     });
     return list; 
 };
-
+/* */
 var filterArray_ifDuplicata = function(lSdata, n, keyOfFilter, listForFilters) { 
 	var array=[];
 	for(var i in list){ 
@@ -354,17 +355,17 @@ var setLexemeCss = function (object, $item) {
    $item.each(function a(i) {
         var lexeme = $(this).data('ort');
         var val = getJsonVal(object, lexeme);
-		var msgWarning = "bg-neutral bd-neutral", msgAfter = msgWarning;
-		if(!val.status || val.status===1 ){ val.status = 1; }else{msgAfter = "bg-success bd-success";}
+		var visualStatus = "bd-neutral";
+		if(!val.status || val.status===1 ){ val.status = 1; }else{visualStatus = "bg-success bd-success";}
 		if(!val.favorite){ val.favorite = 0;}
         //setTimeout(function () {
         $(this).attr("data-status", val.status) //.attr("data-knol", JSON.stringify(val)); // data("favorite", val.favorite)
             .attr("data-k_date", val.k_date)
             .attr("data-score", val.score)
 			.attr("data-favorite", val.favorite)
-            .attr("data-f_date", val.f_date)
-			.removeClass( "bg-info bg-danger bg-warning bg-success bd-info bd-danger bd-warning bd-success " )
-			.addClass( msgAfter );
+            .attr("data-f_date", val.f_date);
+		$(this).removeClass( "bg-success bg-info bg-warning bg-danger  bd-success bd-info bd-warning bd-danger" )
+			.addClass( visualStatus );
         // }, 1000);
     });
 };
@@ -375,12 +376,12 @@ var switchStatus = function (object, $this) {
     var value = $this.attr("data-status"); //pull
     if (value === "1" || !value) { // update storage and CSS
         setJsonStatus(object, lexeme, 0.01); //push
-        setJsonK_Date(object, lexeme); //push
-        setJsonScore(object, lexeme); //push
+        setJsonK_Date(object, lexeme);       //push
+        setJsonScore(object, lexeme);        //push
     } else { // (mirror)
         setJsonStatus(object, lexeme, 1); //push
-        setJsonK_Date(object, lexeme); //push                
-        setJsonScore(object, lexeme); //push
+        setJsonK_Date(object, lexeme);    //push                
+        setJsonScore(object, lexeme);     //push
     }
 	console.log("S+: "+ lexeme +"; val: " + JSON.stringify(value) +": "+ JSON.stringify(  getJsonVal(object, lexeme)  ) );// edited
 }; // end
@@ -398,7 +399,26 @@ var switchFavorite = function (object, $this) {
 	console.log("F+: "+ lexeme +"; val: " + JSON.stringify(value) +": "+ JSON.stringify(  getJsonVal(object, lexeme)  ) );// edited
  }; // end
 
-
+/* */
+var playSound = function ($this) {
+    var ort = $this.attr("data-ort");
+    var pho = $this.attr("data-pho"); //pull
+	var key = function() { if( ort.length == 1) { return pho; } else { return ort; } };
+	$this.addClass("playing");
+	var sound = new Howl(
+		{ urls: ['../cmn/audio/cmn-'+key()+'.mp3'],
+		  onend: function() {
+			var sound = new Howl({ 
+				urls: ['../cmn/audio/cmn-'+key()+'.mp3'],
+		  		onend: function() {$this.removeClass("playing text-success");
+			  }
+		    }).play();
+		  }
+		}).play(); 
+	// $this.find("audio")[0].play(); // with <audio src="../cmn/audio/cmn-{{pyn}}.mp3"></audio>
+	console.log("♪+:ort: "+ ort +" ; pho: " +pho+" ; key: "+key() );// edited
+}; // end	
+	
 /*
 
 */

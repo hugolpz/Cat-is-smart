@@ -2,7 +2,7 @@
 <html>
 <head>
  <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width, initial-scale=1"><!--  -->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<title>my:Menu !</title>    
 	<!-- FRAMEWORKS -->
 	<script rel='script' src="../js/jquery-2.1.0.min.js"></script>
@@ -10,10 +10,11 @@
 	<!-- <link rel='stylesheet' href= '../css/jquery.mobile-1.4.1.min.css'> -->
 
 	<script rel="script" src="../js/vendor.js"></script><!-- -->
-	<link rel='stylesheet' href='../styles/vendor.css'><!-- -->
-	<link rel='stylesheet' href='../styles/main.css'><!-- -->
+	<link rel='stylesheet' href='../css/normalize.min.css'><!-- -->
+	<link rel='stylesheet' href='../css/bootstrap.min.css'><!-- main.css -->
 	<link  rel="stylesheet" href="../css/font-awesome.css">
 	<script rel='script' src='../js/handlebars.js'></script>
+	<script rel='script' src='../js/howler.js'></script>
 	<!-- APPS -->
 	<script rel='script' src='../js/main.js'></script>
 	<link rel='stylesheet' href='../css/mymain.css'><!---          buttons            --->
@@ -40,9 +41,13 @@
 
 <div id="hook" data-role="content .container-fluid">
 <script id="tpl" type="text/template">
-	<div class="row tpl next left-bd-indicator" data-lexeme="{{hant}}{{pyn}}" data-ort="{{hant}}" data-pyn="{{pyn}}">
+	<div class="row tpl next left-bd-indicator bg-success" data-lexeme="{{hant}}{{pyn}}" data-ort="{{hant}}" data-pho="{{pyn}}">
 		<div class="col-xs-9 col-sm-9 col-md-9 vcenter">
-		    <e class="sound fa fa-volume-up"><!-- ♪ --></e>
+			<audio src="../cmn/audio/cmn-{{pyn}}.mp3"></audio>
+		    <e class="sound fa fa-play" ><!-- ♪ --></e>
+<!--			<button onclick="new Howl({             			-->
+<!--		 	 urls: ['../cmn/audio/cmn-{{pyn}}.mp3']             -->
+<!--			}).play();">♪</button>                              -->
 			<span class="ort">{{hant}} </span>
 			<span class="pho">{{pyn}}</span>: 
 			<span class="pos">{{pos}}. </span>
@@ -74,10 +79,10 @@
 	 /* *********** PAGE INITIALISATION ********** */
      //Preprocessing data
          knol = sortJSON(knol, "score", "123");   				cl("S⚙: "); 				var _B  = now();
-     var knolShort = filterArray(knol, 100, "status", 1);  		cl("K.: "+JSON.stringify(knolShort) );
+     var knolShort = filterArray(knol, 10000, "status", 1);  		cl("K.: "+JSON.stringify(knolShort) );
      var list = getArray_Keys(knolShort, "hant"); 				cl("L: "+JSON.stringify(list) );
   	// var url = buildUrlAPI("http://dev.cfdict.fr/api/hant/q/", list, "|"); console.log("U: "+url );
-	 var dictShort = filterArray_ifDuplicata(dict, 100, "hant", list); 	cl("D.: "+JSON.stringify(dictShort));	var _C  = now(); 
+	 var dictShort = filterArray_ifDuplicata(dict, 10000, "hant", list); 	cl("D.: "+JSON.stringify(dictShort));	var _C  = now(); 
 
 	 //Data injection & styling
 	 injectTPL(dictShort, list, "#tpl", "#hook", "no");
@@ -87,24 +92,29 @@
      /* *********** PAGE INTERACTIONS ********** */
      $(document).ready(function() {
          $(".tpl .knol").click(function(){ //var sL_s = now(); 
+			 cl( "K-test_1: "+JSON.stringify(knol));
              switchStatus(knol, $(this).closest(".tpl") );   // edit data  
              setLexemeCss(knol, $(this).closest(".tpl") );    // update screen
-             knol = saveObject(knol, "knol" ); 				 // persistant save (obj, lS)
+             knol = saveObject(knol, "knol" );				 // persistant save (obj, lS)
+			 cl( "K-test_2: "+JSON.stringify(knol));
          });
          $(".tpl .favorite").click(function(){
              switchFavorite(knol, $(this).closest(".tpl") ); // edit data  
              setLexemeCss(knol, $(this).closest(".tpl")   ); // update screen
              knol = saveObject(knol, "knol" ); 				 // persistant save (obj, lS)
          });
+		 $(".tpl .sound").click(function(){ 
+		 	playSound( $(this).closest(".tpl") );
+		 });
     });																						var _E = now(); 
      /* *********** APP PERFORMENCE TEST ********** */
-	 cl("A←0 load: "+ (_A-_0)/1000);
+/*	 cl("A←0 load: "+ (_A-_0)/1000);
 	 cl("B←A sort: "+ (_B-_A)/1000);
 	 cl("C←B filt: "+ (_C-_B)/1000);
 	 cl("D←C injt: "+ (_D-_C)/1000);
 	 cl("E←0 _all: "+ (_E-_0)/1000);														var _F = now();
 	 cl("F←E calc: "+ (_F-_E)/1000);
-      </script>
+*/      </script>
 </div><!-- /page -->
 </body>
 </html>

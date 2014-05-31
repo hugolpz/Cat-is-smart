@@ -3,18 +3,17 @@
 /*******************************************/
 /*                STRUCTURE                */
 /*******************************************/
-html, body, #hook { 
-	height: 100%; width: 100%; 
-	margin: 0em; /* ugly: fix so body stick to header */
-	padding: 0;
-}
-hearder, .navbar { 
-	margin: 0; /* ugly: fix so body stick to header */
-	padding: 0;
-}
-#hook { margin-top: 50px; font-size: 1em; color: #333; }
-.row, .row > div:first-child { margin: 0; }
+html, body, #hook { height: 100%; width: 100%; }
+
+#hook { margin-top: 50px; }
 .tpl { border-top: 1px solid #CCC; }
+.row { margin: 0; }
+/*******************************************/
+/*              PAGE SPECIFIC              */
+/*******************************************/
+/* Exercice: next.html */
+.next > div:nth-of-type(1) { padding: 0 0.5em 0 1em; }
+.next > div:nth-of-type(2) { padding: 0 1em 0 0; } 
 
 /*******************************************/
 /*                LEXICOGRAPHIC                       */
@@ -23,10 +22,10 @@ hearder, .navbar {
 .tpl { font-size: 1em;}
 .ort { font-size: 2em; color: #B10000; }
 .pho { color: green; font-weight: 700; }
-.pos { color: #333; font-style: italic; }
+.pos { color: #666; font-style: italic; font-weight: 700; }
 .def { color: black; font-style: normal; }
-/* Lexicography > bullets > sem */
-.def .sem:nth-child(1):before  { content: "➊"  ; font-size: 1.2em; }
+/* Lexicography > sem */
+.def .sem:nth-child(1):before  { content:   "➊"; font-size: 1.2em; }
 .def .sem:nth-child(2):before  { content: "; ➋"; font-size: 1.2em; }
 .def .sem:nth-child(3):before  { content: "; ➌"; font-size: 1.2em; }
 .def .sem:nth-child(4):before  { content: "; ➍"; font-size: 1.2em; }
@@ -42,16 +41,16 @@ hearder, .navbar {
 .def .sem:nth-child(14):before { content: "; ⓮"; font-size: 1.2em; }
 .def .sem:nth-child(15):before { content: "; ⓯"; font-size: 1.2em; }
 
-/* Lexicography > bullets > phon:
-def:nth-child(1):before { content:  "①"  ; font-size: 1.5em; }
-def:nth-child(2):before { content:  "; ②"; font-size: 1.5em; }
-def:nth-child(3):before { content:  "; ③"; font-size: 1.5em; }
-def:nth-child(4):before { content:  "; ④"; font-size: 1.5em; }
-def:nth-child(5):before { content:  "; ⑤"; font-size: 1.5em; }
-def:nth-child(6):before { content:  "; ⑥"; font-size: 1.5em; }
-def:nth-child(7):before { content:  "; ⑦"; font-size: 1.5em; }
-def:nth-child(8):before { content:  "; ⑧"; font-size: 1.5em; }
-def:nth-child(9):before { content:  "; ⑨"; font-size: 1.5em; }
+/* Lexicography > phon:
+def:nth-child(1):before  { content:   "①"; font-size: 1.5em; }
+def:nth-child(2):before  { content: "; ②"; font-size: 1.5em; }
+def:nth-child(3):before  { content: "; ③"; font-size: 1.5em; }
+def:nth-child(4):before  { content: "; ④"; font-size: 1.5em; }
+def:nth-child(5):before  { content: "; ⑤"; font-size: 1.5em; }
+def:nth-child(6):before  { content: "; ⑥"; font-size: 1.5em; }
+def:nth-child(7):before  { content: "; ⑦"; font-size: 1.5em; }
+def:nth-child(8):before  { content: "; ⑧"; font-size: 1.5em; }
+def:nth-child(9):before  { content: "; ⑨"; font-size: 1.5em; }
 def:nth-child(10):before { content: "; ⑩"; font-size: 1.5em; }
 */
 
@@ -59,14 +58,7 @@ def:nth-child(10):before { content: "; ⑩"; font-size: 1.5em; }
 /*              INTERACTIONS               */
 /*******************************************/
 .sound, .knol, .favorite { font-size: 2em; color:grey; }
-
-/*******************************************/
-/*                EXERCICES                */
-/*******************************************/
-/* Exercice: next.html */
-.next > div:nth-of-type(1) { padding: 0 0.5em 0 1em; }
-.next > div:nth-of-type(2) { padding: 0 1em 0 0; }
-
+.playing .sound { color: green; }
 
 
 /*******************************************/
@@ -78,27 +70,33 @@ def:nth-child(10):before { content: "; ⑩"; font-size: 1.5em; }
 .tpl[data-favorite="1" ] .favorite { color:yellow; }
 .tpl[data-favorite="0" ] .favorite { color:grey; }
 
-.left-bd-indicator { /*structure */
-	border-left: 0.5em solid #eee;
-	/* margin-left: 0.5em; */
-}
-/* http://getbootstrap.com/css/#helper-classes */
+/*******************************************/
+/*        TO DELETE IS PROVEN USELESS      */
+/* http://getbootstrap.com/css/#helper-classes-backgrounds 
 .bg-neutral { background-color: white;   }
 .bg-primary { background-color: #428bca; }
 .bg-success { background-color: #dff0d8; }
 .bg-info 	{ background-color: #d9edf7; }  
 .bg-warning { background-color: #fcf8e3; } 
 .bg-danger  { background-color: #f2dede; }
+/*******************************************/
+
+
+/* http://getbootstrap.com/css/#helper-classes-backgrounds 
 /* left-bd-indicators */
+.left-bd-indicator { /*structure */
+	border-left: 0.5em solid #eee;
+}
 .bd-neutral { border-color: #CCC;    }
-.bd-primary { border-color: #428bca; border-top-color: #CCC;}
-.bd-success { border-color: #5cb85c; border-top-color: #CCC;}
-.bd-info 	{ border-color: #5bc0de; }
-.bd-warning { border-color: #fbeed5; } /*dark: #f0ad4e ; light: #fbeed5;*/
-.bd-danger  { border-color: #d9534f; }
+.bd-primary { border-left-color: #428bca; }
+.bd-success { border-left-color: #5cb85c; }
+.bd-info 	{ border-left-color: #5bc0de; }
+.bd-warning { border-left-color: #fbeed5; } /*dark: #f0ad4e ; light: #fbeed5;*/
+.bd-danger  { border-left-color: #d9534f; }
 
 
-
+/*******************************************/
+/*        TO DELETE IS PROVEN USELESS      */
 /*******************************************/
 /*                  DARK BUTTONS                        */
 /*******************************************/
@@ -136,7 +134,7 @@ button.betn {
   outline:none; /* useless*/
   color: #308830;
 }
-
+/*******************************************/
 
 
 
