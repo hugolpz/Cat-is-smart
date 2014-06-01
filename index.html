@@ -3,7 +3,7 @@
 <head>
  <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-	<title>my:Menu !</title>    
+	<title><i class="fa fa-rocket"></i>Home</title>    
 	<!-- FRAMEWORKS -->
 	<script rel='script' src="../js/jquery-2.1.0.min.js"></script>
 	<script rel='script' src="../js/jquery.mobile-1.4.1.min.jes"></script>
@@ -29,17 +29,18 @@
 <body>
   <div data-role="page" data-theme="b">
   <header></header><!-- /header -->
-<div id="hook" class="row" data-role="content .container-fluid">
-<a href="/pages/next.html"> Next!</a>
+<div id="hook" class="row margin" data-role="content .container-fluid">
+
+<script rel='script' src='../data/pages.js'></script>
 <script id="tpl" type="text/template">
-<div class="panel panel-info" style="width:33%;">
+<button class="panel panel-{{class}} " style="max-width:32%; padding:.1em;margin:.2em;">
       <!-- <img data-src="{{img}}" alt="{{alt}}"></img> -->
-      <div class="panel-heading"><i class="{{icon}}" style="font-size:3em;"></i> {{title}}}</div>
+      <div class="panel-heading"><i class="{{icon}}" style="font-size:3em;"></i><br />{{title}}}</div>
 	  <div class="panel-body">
         <p>{{text}}</p>
-        <p><a href="{{href}}.html" class="btn btn-default">Button</a></p>
+        <p><a href="{{href}}.html" class="btn btn-default">Go!</a></p>
       </div>
-</div>
+</button>
     </script><!-- {{#fr}}<p>{{.}}</p>{{/fr}} : array fr, each element-->
 
     </div><!-- /content -->
@@ -50,14 +51,14 @@
     //appendJQMFooter('—Hugo', 'JQM 1.3.1Beta');
 	 
 	// localStorage.removeItem("dict");
-	// localStorage.removeItem("knol");
+	// localStorage.removeItem("pages");
     
     /* *********** LOADING DATA ********** */
     var dict = loadJSONFile('https://codio.io/hugolpz/Cat-is-smart/data/dict-0050.json', "dict"); cl("D: "+JSON.stringify(dict) );
     var knol = loadJSONFile('https://codio.io/hugolpz/Cat-is-smart/data/knol-5000.json', "knol"); cl("K: "/* + JSON.stringify(knol) */ ); var _A = now();
     // knol = updateJsonScores(knol); 
-    var list = [ "3", "4", "5", "1", "2" ];
-    var pages = loadJSONFile('https://codio.io/hugolpz/Cat-is-smart/data/pages.json', "pages"); cl("D: "+JSON.stringify(dict) );
+    var pages = webpages;
+    var list = [ "1", "2", "3", "4", "5" ];
 
 	injectTPL(pages, list, "#tpl", "#hook", "no");
 	 /*  LIST IS NOT DEFINED, because inject tpl expect character list ! need hack : hant = 1, 2, 3.. */

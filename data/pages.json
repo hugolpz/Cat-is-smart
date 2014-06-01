@@ -1,7 +1,0 @@
-[
-	 { "hant":"1", "href":"/pages/search", "icon":"fa fa-search", "title":"Dictionnaire", "text":"The basis, a searchable electronic dictionary." },
-	 { "hant":"2", "href":"/pages/test", "icon":"fa fa-bar-chart-o", "title":"Test", "text":"Tell us what do you know." },
-	 { "hant":"3", "href":"/pages/next", "icon":"fa fa-graduation-cap", "title":"Good to learn", "text":"According to previous knowledges, there are the good words to learn." },
-	 { "hant":"4", "href":"/pages/favorite", "icon":"fa fa-star", "title":"Favoris", "text":"Gather words you wish to focus on! Most recent on the top." },
-	 { "hant":"5", "href":"/pages/historic", "icon":"fa fa-check", "title":"Learned", "text":"Here are all what you learnt, the most recent on the top."}
-]
