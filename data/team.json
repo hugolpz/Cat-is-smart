@@ -1,0 +1,69 @@
+[
+      {
+        "name": "Hugo Lopez",
+        "avatar": "/images/team/CEO.Hugo-Lopez.jpg",
+        "role": {
+          "title": "CEO",
+          "description": "As a Ph.D on language education in the French National Institute of Oriental Languages and Civilization he bring in linguistic expertise."
+        },
+        "links": [
+          {
+            "type": "twitter",
+            "url": "http://twitter.com/hugo_lz",
+            "label": "hugo_lz",
+            "class": "text-info"
+          },
+          {
+            "type": "github",
+            "url": "http://github.com/hugolpz",
+            "label": "hugolpz",
+            "class": "text-muted"
+          },
+          {
+            "type": "linkedin",
+            "url": "http://fr.linkedin.com/pub/lopez-hugo/22/20/a94",
+            "label": "lopez-hugo",
+            "class": "text-primary"
+          },
+          {
+            "type": "stack-overflow",
+            "url": "http://stackoverflow.com/users/1974961/hugolpz",
+            "label": "hugolpz",
+            "class": "text-warning"
+          }
+        ]
+      },
+      {
+        "name": "Édouard Lopez", "avatar": "/images/team/CTO.Edouard-Lopez.jpg",
+        "role": {
+          "title": "CTO",
+          "description": "Lead Developer and UX expert. As a dynamic software Engineer, Edouard is the technical compass bringing suitable technologies all together."
+        },
+        "links": [
+          {
+            "type": "twitter",
+            "url": "http://twitter.com/edouard_lopez",
+            "label": "edouard_lopez",
+            "class": "text-info"
+          },
+          {
+            "type": "github",
+            "url": "http://github.com/edouard-lopez",
+            "label": "edouard-lopez",
+            "class": "text-muted"
+          },
+          {
+            "type": "linkedin",
+            "url": "http://fr.linkedin.com/in/edouardlopez/en",
+            "label": "edouardlopez",
+            "class": "text-primary"
+          },
+          {
+            "type": "stack-overflow",
+            "url": "https://stackoverflow.com/users/802365/edouard-lopez",
+            "label": "edouard-lopez",
+            "class": "text-warning"
+          }
+        ]
+      }
+    ]
