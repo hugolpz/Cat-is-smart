@@ -25,10 +25,9 @@ html, body, #hook { height: 100%; width: 100%; }
 /*                LEXICOGRAPHIC                       */
 /*******************************************/
 /* Lexicography > color */
-.tpl { font-size: 1em;}
 .ort { font-size: 2em; color: #B10000; }
 .pho { color: green; font-weight: 700; }
-.pos { color: #666; font-style: italic; font-weight: 700; }
+.pos { color: #888; font-style: italic; font-weight: 700; }
 .def { color: black; font-style: normal; }
 /* Lexicography > sem */
 .def .sem:nth-child(1):before  { content:   "➊"; font-size: 1.2em; }

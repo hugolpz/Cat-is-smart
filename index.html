@@ -3,7 +3,7 @@
 <head>
  <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-	<title><i class="fa fa-rocket"></i>Home</title>    
+	<title>Home</title>    
 	<!-- FRAMEWORKS -->
 	<script rel='script' src="../js/jquery-2.1.0.min.js"></script>
 	<script rel='script' src="../js/jquery.mobile-1.4.1.min.jes"></script>
@@ -29,7 +29,7 @@
 <body>
   <div data-role="page" data-theme="b">
   <header></header><!-- /header -->
-<div id="hook" class="row margin" data-role="content .container-fluid">
+<div id="hook" class="row margin" data-role="content container-fluid">
 
 <script rel='script' src='../data/pages.js'></script>
 <script id="tpl" type="text/template">
@@ -54,7 +54,7 @@
 	// localStorage.removeItem("pages");
     
     /* *********** LOADING DATA ********** */
-    var dict = loadJSONFile('https://codio.io/hugolpz/Cat-is-smart/data/dict-0050.json', "dict"); cl("D: "+JSON.stringify(dict) );
+    var dict = loadJSONFile('https://codio.io/hugolpz/Cat-is-smart/data/dict-hsk8653.json', "dict"); cl("D: "+JSON.stringify(dict) );
     var knol = loadJSONFile('https://codio.io/hugolpz/Cat-is-smart/data/knol-5000.json', "knol"); cl("K: "/* + JSON.stringify(knol) */ ); var _A = now();
     // knol = updateJsonScores(knol); 
     var pages = webpages;

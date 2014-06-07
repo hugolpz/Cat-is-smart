@@ -4,9 +4,9 @@
     id        = "dict.application.myapp"
     version   = "0.1"
     versionCode = "0.1">
-    <name>MyApp</name>
-    <description> My CFL App </description>
-    <author href="https://mywebsite.com" email="hugo.lpz@gmail.com"> HL</author>
+    <name>CFdict App (beta)</name>
+    <description> Beta CFdict Application for smartphone. </description>
+    <author href="https://dev.cfdict.net" email="hugo.lpz@gmail.com"> HL</author>
 
     <feature name="http://api.phonegap.com/1.0/device" />
 

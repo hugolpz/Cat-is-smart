@@ -405,20 +405,23 @@ var switchFavorite = function (object, $this) {
 
 /* */
 var playSound = function ($this) {
+	// get phonetic properties
     var ort = $this.attr("data-ort");
-    var pho = $this.attr("data-pho"); //pull
-	var key = function() { if( ort.length == 1) { return pho; } else { return ort; } };
+    var pho = $this.attr("data-pho").replace("5", "1"); //pull
+	var key = function() { if( ort.length == 1) { return "syllabs/cmn-"+pho; } else { return "hsk/cmn-"+ort; } };
 	$this.addClass("playing");
-	var sound = new Howl(
-		{ urls: ['../cmn/audio/cmn-'+key()+'.mp3'],
-		  onend: function() {
-			var sound = new Howl({ 
-				urls: ['../cmn/audio/cmn-'+key()+'.mp3'],
-		  		onend: function() {$this.removeClass("playing text-success");
-			  }
-		    }).play();
-		  }
-		}).play(); 
+	// playing
+	var sound = new Howl({
+			urls: ['../audio/cmn/'+key()+'.mp3'],
+			onend: function() {$this.removeClass("playing text-success");}
+			//onend: function() {
+			//	var sound = new Howl({ 
+			//		urls: ['../audio/cmn/'+key()+'.mp3'],
+			//		onend: function() {$this.removeClass("playing text-success");
+			//	}
+			//}).play();
+		//}
+	}).play();
 	// $this.find("audio")[0].play(); // with <audio src="../cmn/audio/cmn-{{pyn}}.mp3"></audio>
 	console.log("♪+:ort: "+ ort +" ; pho: " +pho+" ; key: "+key() );// edited
 }; // end	
