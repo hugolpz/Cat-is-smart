@@ -139,7 +139,7 @@ var saveObject = function (object, toLocalStorage) {
      * @key1: name of key in JSON which value should be index      --str
      * @key2: idem, to extend index's name                         --str
      * @return: object with suitable indexes                       --obj
-     * SYNTAXE:  addIndex(dict, "hant", "pyn"); */
+     * SYNTAXE:  addIndex(dict, "ort", "pho"); */
 var addIndex = function(object, key1, key2){
     var data = object, newData = {}, newIndex;
     for(var i in data){
@@ -159,8 +159,8 @@ var addIndex = function(object, key1, key2){
  *  @lSdata : localStorage variable storing up-to-date knol data as string, JSON.parse() run on it.
  * @n: number n of unknow lexies to get.                      --num
  * @status: 1 is unknow, 0.01 is unknow                       --num : 1 or 0.01
- * @returnKey: key to return as list, usually hant.           --str
- * @return: list of values, usually hant characters/words     --obj
+ * @returnKey: key to return as list, usually ort.           --str
+ * @return: list of values, usually ort characters/words     --obj
  * @TODO: more parameters for: lexem length, date/historic, favorite.   < --------------------------------------------------------- Todo */
 var filterArray = function (lSdata, n, keyOfFilter, valOfFilter) {      // < --------------------------------------------------------------------------- Add attributes
     var array = lSdata
@@ -199,8 +199,8 @@ var filterArray_ifDuplicata = function(lSdata, n, keyOfFilter, listForFilters) {
  * :def: from a list of idexes/items, return array of objects respecting this filter
  * @objectplus: dictionary object with indexes				--obj
  * @list: lexies to get.                                    --obj
- * @key: key used as filter, usually hant.					--str
- * @return: list of values, usually hant characters/words	--obj */
+ * @key: key used as filter, usually ort.					--str
+ * @return: list of values, usually ort characters/words	--obj */
 var getList_Item = function (objectplus, list, key) { 
     var data=objectplus, newData = {};
     for (var i=0; i<list.length; i++) {
@@ -258,7 +258,7 @@ var injectTPL = function (dataORurl, list, $tpl, $hook, indexed, callback) {
     else{ // no index
         for (var j in list) {
             for(var i in data){
-            if (data[i]["hant"] === list[j]) { 
+            if (data[i]["ort"] === list[j]) { 
                 var lexeme = list[j]; // "火山口";
                 var template = $($tpl).html();
                 if(data[i]){ // so empty dict entry don't break the code
@@ -294,18 +294,18 @@ var pushJsonVal = function (json, keyToFilter, item, keyToWrite, val) {
     } return json;
 };
 
-var getJsonVal = function(json, item) { return getJsonValue(json, "hant", item); }; // <-------- replace all getJsonVal by getJsonVal_zh
-var setJsonStatus = function(json, item, val) { pushJsonVal(json, 'hant', item, 'status', val  ); };
-var setJsonK_Date = function(json, item) { pushJsonVal(json, 'hant', item, 'k_date', timeStamp( new Date())  ); };
-var setJsonScore = function(json, item) { pushJsonVal(json, 'hant', item, 'score', calScoreItem(json, item) ); };
-var setJsonFavorite = function(json, item, val) { pushJsonVal(json, 'hant', item, 'favorite', val); };
-var setJsonF_Date = function(json, item) { pushJsonVal(json, 'hant', item, 'f_date', timeStamp( new Date())  ); };
+var getJsonVal = function(json, item) { return getJsonValue(json, "ort", item); }; // <-------- replace all getJsonVal by getJsonVal_zh
+var setJsonStatus = function(json, item, val) { pushJsonVal(json, 'ort', item, 'status', val  ); };
+var setJsonK_Date = function(json, item) { pushJsonVal(json, 'ort', item, 'k_date', timeStamp( new Date())  ); };
+var setJsonScore = function(json, item) { pushJsonVal(json, 'ort', item, 'score', calScoreItem(json, item) ); };
+var setJsonFavorite = function(json, item, val) { pushJsonVal(json, 'ort', item, 'favorite', val); };
+var setJsonF_Date = function(json, item) { pushJsonVal(json, 'ort', item, 'f_date', timeStamp( new Date())  ); };
 
 //META.Fn: update all scores
 function updateJsonScores(object) {
     for (var j in object) {
-       // console.log("hiii:"+object[j].hant);
-        object[j].score = calScoreItem(object, object[j].hant);
+       // console.log("hiii:"+object[j].ort);
+        object[j].score = calScoreItem(object, object[j].ort);
         if (!object[j].k_date) { object[j].k_date = 0; }
         if (!object[j].favorite) { object[j].favorite = 0; }
         if (!object[j].f_date) { object[j].f_date = 0; }
@@ -330,7 +330,7 @@ var calScoreRoot = function (json, root) {  // 0. Mass of one zi
    var value = getJsonVal(json, root);
     if(value) {   return value.status * value.rank; }
     else{
-        // push {"hant": +root+,"status":1,"rank":20000,"score":null},
+        // push {"ort": +root+,"status":1,"rank":20000,"score":null},
         return 1*20000;
     }
 };
@@ -422,7 +422,7 @@ var playSound = function ($this) {
 			//}).play();
 		//}
 	}).play();
-	// $this.find("audio")[0].play(); // with <audio src="../cmn/audio/cmn-{{pyn}}.mp3"></audio>
+	// $this.find("audio")[0].play(); // with <audio src="../cmn/audio/cmn-{{pho}}.mp3"></audio>
 	console.log("♪+:ort: "+ ort +" ; pho: " +pho+" ; key: "+key() );// edited
 }; // end	
 	

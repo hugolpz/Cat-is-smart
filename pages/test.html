@@ -32,10 +32,10 @@
 
 <div id="hook" data-role="content container-fluid"></div>
 <script id="tpl" type="text/template">
-        <div class="tpl btn btn-default zi-test-entry" data-lexeme="{{hant}}{{pyn}}" data-ort="{{hant}}" data-pho="{{pyn}}">
-			<audio src="../cmn/audio/cmn-{{pyn}}.mp3"></audio>
-			<span class="ort">{{hant}}</span><br />
-			<span class="pho">{{pyn}}</span>
+        <div class="tpl btn btn-default zi-test-entry" style="margin:.2em;" data-lexeme="{{ortx1}}{{pho}}" data-ort="{{ort}}" data-pho="{{pho}}">
+			<audio src="../cmn/audio/cmn-{{pho}}.mp3"></audio>
+			<span class="sound ort">{{ort}}</span><br />
+			<span class="pho">{{phox1}}</span>
 		</div>
 </script>  
 	  
@@ -50,7 +50,7 @@
 	// localStorage.removeItem("knol");
     
     /* *********** LOADING DATA ********** */
-    var dict = loadJSONFile('https://codio.io/hugolpz/Cat-is-smart/data/dict-0050.json', "dict"); cl("D: "+JSON.stringify(dict) );
+    var dict = loadJSONFile('https://codio.io/hugolpz/Cat-is-smart/data/dict-hsk8653.json', "dict"); cl("D: "+JSON.stringify(dict) );
     var knol = loadJSONFile('https://codio.io/hugolpz/Cat-is-smart/data/knol-5000.json', "knol"); cl("K: "/* + JSON.stringify(knol) */ ); var _A = now();
     // knol = updateJsonScores(knol); 
 
@@ -58,10 +58,10 @@
 	 /* *********** PAGE INITIALISATION ********** */
      //Preprocessing data
          knol = sortJSON(knol, "score", "123");   				cl("S⚙: "); 				var _B  = now();
-     var knolShort = filterArray(knol, 10000, "status", 1);  		cl("K.: "+JSON.stringify(knolShort) );
-     var list = getArray_Keys(knolShort, "hant"); 				cl("L: "+JSON.stringify(list) );
+     var knolShort = filterArray(knol, 400, "status", 1);  		cl("K.: "+JSON.stringify(knolShort) );
+     var list = getArray_Keys(knolShort, "ort"); 				cl("L: "+JSON.stringify(list) );
   	// var url = buildUrlAPI("http://dev.cfdict.fr/api/hant/q/", list, "|"); console.log("U: "+url );
-	 var dictShort = filterArray_ifDuplicata(dict, 10000, "hant", list); 	cl("D.: "+JSON.stringify(dictShort));	var _C  = now(); 
+	 var dictShort = filterArray_ifDuplicata(dict, 400, "ort", list); 	cl("D.: "+JSON.stringify(dictShort));	var _C  = now(); 
 
 	 //Data injection & styling
 	 injectTPL(dictShort, list, "#tpl", "#hook", "no");

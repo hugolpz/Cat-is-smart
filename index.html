@@ -33,7 +33,7 @@
 
 <script rel='script' src='../data/pages.js'></script>
 <script id="tpl" type="text/template">
-<button class="panel panel-{{class}} " style="max-width:32%; padding:.1em;margin:.2em;">
+<button  href="{{href}}.html" class="panel panel-{{class}} " style="max-width:32%; padding:.1em;margin:.2em;">
       <!-- <img data-src="{{img}}" alt="{{alt}}"></img> -->
       <div class="panel-heading"><i class="{{icon}}" style="font-size:3em;"></i><br />{{title}}}</div>
 	  <div class="panel-body">
@@ -51,7 +51,7 @@
     //appendJQMFooter('—Hugo', 'JQM 1.3.1Beta');
 	 
 	// localStorage.removeItem("dict");
-	// localStorage.removeItem("pages");
+	// localStorage.removeItem("knol");
     
     /* *********** LOADING DATA ********** */
     var dict = loadJSONFile('https://codio.io/hugolpz/Cat-is-smart/data/dict-hsk8653.json', "dict"); cl("D: "+JSON.stringify(dict) );
@@ -59,8 +59,10 @@
     // knol = updateJsonScores(knol); 
     var pages = webpages;
     var list = [ "1", "2", "3", "4", "5" ];
-
+    
+	console.log("Avant")
 	injectTPL(pages, list, "#tpl", "#hook", "no");
+	 console.log("Après")
 	 /*  LIST IS NOT DEFINED, because inject tpl expect character list ! need hack : hant = 1, 2, 3.. */
 </script>
 </div><!-- /page -->
