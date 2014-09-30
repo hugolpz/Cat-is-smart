@@ -89,11 +89,11 @@ var same = function (o){ return o; };
  * @return: object sorted                           --obj */
 var sortJSON = function (object, key, way) {
    data = object
-            .sort(function(a, b) {
+            .sort(function(a, b) {  
                 var x = a[key]; var y = b[key];
                 if (way === '123') {return ((x < y) ? -1 : ((x > y) ? 1 : 0));}
                 if (way === '321') {return ((x > y) ? -1 : ((x < y) ? 1 : 0));}
-            });
+   });
     return data;
 };
 /* ############################################################################# */
@@ -185,11 +185,11 @@ var getArray_Keys = function(array, returnKey) { var list = array.map(function (
 /* */
 var filterArray_ifDuplicata = function(lSdata, n, keyOfFilter, listForFilters) { 
 	var array=[];
-	for(var i in list){ 
-		var target = filterArray(lSdata, n, keyOfFilter, list[i]);
+	for(var i in listForFilters){ 
+		var target = filterArray(lSdata, n, keyOfFilter, listForFilters[i]);
 		for (var j=0; j<target.length;j++) { 
 			var k = array.length;
-			array[k] = target[j];
+			array[k] = target[j]; // array.push(target[j])
 		}
 	} 
 	return array;
@@ -302,16 +302,36 @@ var setJsonFavorite = function(json, item, val) { pushJsonVal(json, 'ort', item,
 var setJsonF_Date = function(json, item) { pushJsonVal(json, 'ort', item, 'f_date', timeStamp( new Date())  ); };
 
 //META.Fn: update all scores
-function updateJsonScores(object) {
+var updateJsonScores = function (object) {
     for (var j in object) {
-       // console.log("hiii:"+object[j].ort);
-        object[j].score = calScoreItem(object, object[j].ort);
         if (!object[j].k_date) { object[j].k_date = 0; }
         if (!object[j].favorite) { object[j].favorite = 0; }
         if (!object[j].f_date) { object[j].f_date = 0; }
+        object[j].score = calScoreItem(object, object[j].ort);
+    } return object;
+};
+
+// META.fn: Find list of items to update
+// ex: update_items_from_list(knol, "ort", $this.data("ort") )
+var find_items_with_pattern = function (arr, key, pattern_str) {
+ var out = [];
+  for (var i in arr) {
+    if (arr[i][key].indexOf(pattern_str) > -1) {
+		out.push({'i': i, 'ort':arr[i][key]});
     }
-    return object;
-}
+  } return out;	
+};
+
+// META.fn: Update scores for list of items
+//  ex: update_items_from_list(knol, list)
+var update_items_from_list = function (json, arr) {
+  for (var i in arr) {
+	var lexeme = json[arr[i]["i"]]["ort"]; // or arr[i]["ort"]
+	setJsonScore(json, lexeme);
+//   json[arr["i"]]["score"] = calScoreItem(json, lexeme)
+	console.log("S++: "+ lexeme +"; "+ JSON.stringify(  getJsonVal(json, lexeme)  ) );// edited
+  }
+};
 
 // 2. Mass of item (ci) = Imass = IfRank * Istatus * [ ∑ (CfRank * Cstatus)]
 var calScoreItem  = function (json, item) {  // 0. Mass of one zi
@@ -409,22 +429,50 @@ var playSound = function ($this) {
     var ort = $this.attr("data-ort");
     var pho = $this.attr("data-pho").replace("5", "1"); //pull
 	var key = function() { if( ort.length == 1) { return "syllabs/cmn-"+pho; } else { return "hsk/cmn-"+ort; } };
+	var urls= ['../audio/cmn/'+key()+'.mp3'];
 	$this.addClass("playing");
+
 	// playing
 	var sound = new Howl({
-			urls: ['../audio/cmn/'+key()+'.mp3'],
+			urls: urls,
 			onend: function() {$this.removeClass("playing text-success");}
-			//onend: function() {
-			//	var sound = new Howl({ 
-			//		urls: ['../audio/cmn/'+key()+'.mp3'],
-			//		onend: function() {$this.removeClass("playing text-success");
-			//	}
-			//}).play();
-		//}
 	}).play();
+//	play_sounds(urls, $this);
 	// $this.find("audio")[0].play(); // with <audio src="../cmn/audio/cmn-{{pho}}.mp3"></audio>
 	console.log("♪+:ort: "+ ort +" ; pho: " +pho+" ; key: "+key() );// edited
 }; // end	
+
+
+// PLAY_SOUNDS is NOT USED
+var play_sounds = function(array_of_audio_urls, $this) {
+    // initialisation:
+    var onPlay = [false],  // this one is useless now
+      pCount = 0;
+      /* playlistUrls = [
+        "./audio/cmn-ni3.mp3",
+        "./audio/cmn-hao3.mp3",
+        "./audio/cmn-lao3.mp3",
+        "./audio/cmn-mao3.mp3"
+        ]; // audio list */
+     var howlerBank = [], // var ????
+      loop = true;
+
+    // playing i+1 audio (= chaining audio files)
+    var onEnd = function(e) {
+      if (loop === true ) { pCount = (pCount + 1 !== howlerBank.length)? pCount + 1 : 0; }
+      else { pCount = pCount + 1; }
+	  $this.removeClass("playing text-success");
+      howlerBank[pCount].play();
+    };
+
+    // build up howlerBank:     
+    array_of_audio_urls.forEach(function(current, i) {   
+      howlerBank.push(new Howl({ urls: [array_of_audio_urls[i]], onend: onEnd, buffer: true }))
+    });
+
+    // initiate the whole :
+        howlerBank[0].play();
+}
 	
 /*
 

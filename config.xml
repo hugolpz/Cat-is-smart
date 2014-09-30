@@ -1,46 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <widget xmlns     = "http://www.w3.org/ns/widgets"
-    xmlns:gap = "http://phonegap.com/ns/1.0"
-    id        = "dict.application.myapp"
-    version   = "0.1"
-    versionCode = "0.1">
-    <name>CFdict App (beta)</name>
-    <description> Beta CFdict Application for smartphone. </description>
-    <author href="https://dev.cfdict.net" email="hugo.lpz@gmail.com"> HL</author>
+<widget xmlns     = "http://www.w3.org/ns/widgets"
+		xmlns:gap = "http://phonegap.com/ns/1.0"
+		id        = "fr.cfdict.hsk"
+		version   = "0.3.0"
+		versionCode = "0.3.0">
+	
+	<!-- http://docs.build.phonegap.com/en_US/3.1.0/configuring_preferences.md.html#Preferences -->
+		<preference name="phonegap-version" value="3.5.0" />
 
-    <feature name="http://api.phonegap.com/1.0/device" />
+		<preference name="orientation"      value="default" />
+		<preference name="target-device"    value="universal" />
+		<preference name="fullscreen"       value="false" />
+		<preference name="android-installLocation" value="auto" />
+	
+	
+		<name>HSK App (beta)</name>
+		<description> Beta HSK Application for smartphone. </description>
+		<author href="https://dev.cfdict.net" real="cfdict.fr!" email="hugo.lpz@gmail.com"> HL</author>
 
-    <gap:platforms>
-      <gap:platform name="ios" />
-      <gap:platform name="android" />
-      <gap:platform name="winphone" />
-    </gap:platforms>
-<!-- http://docs.build.phonegap.com/en_US/3.1.0/configuring_preferences.md.html#Preferences -->
-    <preference name="phonegap-version" value="2.9.0" />
-    <preference name="orientation"      value="default" />
-    <preference name="target-device"    value="universal" />
-    <preference name="fullscreen"       value="false" />
-	<preference name="android-installLocation" value="auto" />
+		<feature name="http://api.phonegap.com/1.0/device" />
 
-<icon src="icon.png" /><!--
-    <icon src="res/icon/android/icon-36-ldpi.png"   gap:platform="android"    gap:density="ldpi" />
-    <icon src="res/icon/android/icon-48-mdpi.png"   gap:platform="android"    gap:density="mdpi" />
-    <icon src="res/icon/android/icon-72-hdpi.png"   gap:platform="android"    gap:density="hdpi" />
-    <icon src="res/icon/android/icon-96-xhdpi.png"  gap:platform="android"    gap:density="xhdpi" />
-    <icon src="res/icon/ios/icon-57.png"            gap:platform="ios"        width="57" height="57" />
-    <icon src="res/icon/ios/icon-72.png"            gap:platform="ios"        width="72" height="72" />
-    <icon src="res/icon/ios/icon-57-2x.png"         gap:platform="ios"        width="114" height="114" />
-    <icon src="res/icon/ios/icon-72-2x.png"         gap:platform="ios"        width="144" height="144" />
-    <icon src="res/icon/wp/icon.png"                gap:platform="winphone"   width="62" height="62"/>
-    <icon src="res/icon/wp/tileicon.png"            gap:platform="winphone"   gap:role="background"   width="173" height="173"/> -->
-<gap:splash src="splash.png" /><!--
-    <gap:splash src="res/screen/android/screen-ldpi-portrait.png"  gap:platform="android" gap:density="ldpi" />
-    <gap:splash src="res/screen/android/screen-mdpi-portrait.png"  gap:platform="android" gap:density="mdpi" />
-    <gap:splash src="res/screen/android/screen-hdpi-portrait.png"  gap:platform="android" gap:density="hdpi" />
-    <gap:splash src="res/screen/android/screen-xhdpi-portrait.png" gap:platform="android" gap:density="xhdpi" />
-    <gap:splash src="res/screen/ios/screen-iphone-portrait.png"    gap:platform="ios"     width="320" height="480" />
-    <gap:splash src="res/screen/ios/screen-iphone-portrait-2x.png" gap:platform="ios"     width="640" height="960" />
-    <gap:splash src="res/screen/ios/screen-ipad-portrait.png"      gap:platform="ios"     width="768" height="1024" />
-    <gap:splash src="res/screen/ios/screen-ipad-landscape.png"     gap:platform="ios"     width="1024" height="768" />
-    <gap:splash src="res/screen/wp/wp.jpg" gap:platform="winphone" width="480" height="800" /> -->
+		<gap:platforms>
+		  <gap:platform name="ios" />
+		  <gap:platform name="android" />
+		  <gap:platform name="winphone" />
+		</gap:platforms>
+
+
+	<icon src="icon.png" /><!--
+		<icon src="res/icon/android/icon-36-ldpi.png"   gap:platform="android"    gap:density="ldpi" />
+		<icon src="res/icon/android/icon-48-mdpi.png"   gap:platform="android"    gap:density="mdpi" />
+		<icon src="res/icon/android/icon-72-hdpi.png"   gap:platform="android"    gap:density="hdpi" />
+		<icon src="res/icon/android/icon-96-xhdpi.png"  gap:platform="android"    gap:density="xhdpi" />
+		<icon src="res/icon/ios/icon-57.png"            gap:platform="ios"        width="57" height="57" />
+		<icon src="res/icon/ios/icon-72.png"            gap:platform="ios"        width="72" height="72" />
+		<icon src="res/icon/ios/icon-57-2x.png"         gap:platform="ios"        width="114" height="114" />
+		<icon src="res/icon/ios/icon-72-2x.png"         gap:platform="ios"        width="144" height="144" />
+		<icon src="res/icon/wp/icon.png"                gap:platform="winphone"   width="62" height="62"/>
+		<icon src="res/icon/wp/tileicon.png"            gap:platform="winphone"   gap:role="background"   width="173" height="173"/> -->
+	<gap:splash src="splash.png" /><!--
+		<gap:splash src="res/screen/android/screen-ldpi-portrait.png"  gap:platform="android" gap:density="ldpi" />
+		<gap:splash src="res/screen/android/screen-mdpi-portrait.png"  gap:platform="android" gap:density="mdpi" />
+		<gap:splash src="res/screen/android/screen-hdpi-portrait.png"  gap:platform="android" gap:density="hdpi" />
+		<gap:splash src="res/screen/android/screen-xhdpi-portrait.png" gap:platform="android" gap:density="xhdpi" />
+		<gap:splash src="res/screen/ios/screen-iphone-portrait.png"    gap:platform="ios"     width="320" height="480" />
+		<gap:splash src="res/screen/ios/screen-iphone-portrait-2x.png" gap:platform="ios"     width="640" height="960" />
+		<gap:splash src="res/screen/ios/screen-ipad-portrait.png"      gap:platform="ios"     width="768" height="1024" />
+		<gap:splash src="res/screen/ios/screen-ipad-landscape.png"     gap:platform="ios"     width="1024" height="768" />
+		<gap:splash src="res/screen/wp/wp.jpg" gap:platform="winphone" width="480" height="800" /> -->
 </widget>

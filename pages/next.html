@@ -32,9 +32,9 @@
 
 <div id="hook" data-role="content container-fluid">
 <script id="tpl" type="text/template">
-	<div class="row tpl next left-bd-indicator bg-success" data-lexeme="{{ort}}{{pho}}" data-ort="{{ort}}" data-pho="{{pho}}">
+	<div class="row tpl next left-bd-indicator bg-success" data-ort="{{ort}}" data-pho="{{pho}}" data-lexeme="{{ort}}{{pho}}">
 		<div class="col-xs-9 col-sm-9 col-md-9 vcenter">
-			<audio src="../cmn/audio/cmn-{{pho}}.mp3"></audio>
+<!--				<audio src="../audio/cmn-{{pho}}.mp3"></audio>  -->
 		    <e class="sound fa fa-play" ><!-- ♪ --></e>
 <!--			<button onclick="new Howl({             			-->
 <!--		 	 urls: ['../cmn/audio/cmn-{{pho}}.mp3']             -->
@@ -62,31 +62,34 @@
 	// localStorage.removeItem("knol");
     
     /* *********** LOADING DATA ********** */
-    var dict = loadJSONFile('https://codio.io/hugolpz/Cat-is-smart/data/dict-hsk8653.json', "dict"); cl("D: "+JSON.stringify(dict) );
-    var knol = loadJSONFile('https://codio.io/hugolpz/Cat-is-smart/data/knol-5000.json', "knol"); cl("K: "/* + JSON.stringify(knol) */ ); var _A = now();
-    // knol = updateJsonScores(knol); 
+    var dict = loadJSONFile('../data/dict-hsk8653.json', "dict"); //cl("D: "+JSON.stringify(dict) );
+    var knol = loadJSONFile('../data/knol-16000.json', "knol"); cl("K: "/* + JSON.stringify(knol) */ ); var _A = now();
+	// Update
+	// knol = updateJsonScores(knol);
+	// saveObject(knol, "knol");
 
 	 
 	 /* *********** PAGE INITIALISATION ********** */
      //Preprocessing data
-         knol = sortJSON(knol, "score", "123");   				cl("S⚙: "); 				var _B  = now();
-     var knolShort = filterArray(knol, 100, "status", 1);  		cl("K.: "+JSON.stringify(knolShort) );
-     var list = getArray_Keys(knolShort, "ort"); 				cl("L: "+JSON.stringify(list) );
+     var knol = sortJSON(knol, "score", "123");   				cl("S⚙: "); 				var _B  = now();
+     var knolShort = filterArray(knol, 100, "status", 1);  	//	cl("K.: "+JSON.stringify(knolShort) );
+     var list = getArray_Keys(knolShort, "ort"); 			//	cl("L: "+JSON.stringify(list) );
   	// var url = buildUrlAPI("http://dev.cfdict.fr/api/hant/q/", list, "|"); console.log("U: "+url );
-	 var dictShort = filterArray_ifDuplicata(dict, 100, "ort", list); 	cl("D.: "+JSON.stringify(dictShort));	var _C  = now(); 
+	 var dictShort = filterArray_ifDuplicata(dict, 100, "ort", list); 	//cl("D.: "+JSON.stringify(dictShort));	var _C  = now(); 
 
 	 //Data injection & styling
 	 injectTPL(dictShort, list, "#tpl", "#hook", "no");
      setLexemeCss(knolShort, $(".tpl"));													var _D = now(); 
 	 
-
      /* *********** PAGE INTERACTIONS ********** */
      $(document).ready(function() {
          $(".tpl .knol").click(function(){ //var sL_s = now(); 
 			 cl( "K-test_1: "+JSON.stringify(knol));
              switchStatus(knol, $(this).closest(".tpl") );   // edit data  
              setLexemeCss(knol, $(this).closest(".tpl") );    // update screen
-             knol = saveObject(knol, "knol" );				 // persistant save (obj, lS)
+			 var impacted = find_items_with_pattern(knol, "ort", $(this).closest(".tpl").attr("data-ort") )
+			 update_items_from_list(knol, impacted);
+			 knol = saveObject(knol, "knol" );	
 			 cl( "K-test_2: "+JSON.stringify(knol));
          });
          $(".tpl .favorite").click(function(){
