@@ -5,16 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<title>Good to learn!</title>    
 	<!-- FRAMEWORKS -->
-	<script rel='script' src="../js/jquery-2.1.0.min.js"></script>
-	<script rel='script' src="../js/jquery.mobile-1.4.1.min.js"></script>
-	<!-- <link rel='stylesheet' href= '../css/jquery.mobile-1.4.1.min.css'> -->
-
-	<script rel="script" src="../js/vendor.js"></script><!-- -->
-	<link rel='stylesheet' href='../css/normalize.min.css'><!-- -->
-	<link rel='stylesheet' href='../css/bootstrap.min.css'><!-- main.css -->
-	<link  rel="stylesheet" href="../css/font-awesome.css">
-	<script rel='script' src='../js/handlebars.js'></script>
-	<script rel='script' src='../js/howler.js'></script>
+	<script src="../js/jquery-2.1.0.min.js"></script>
+	<script src="../js/jquery.mobile-1.4.1.min.js"></script>
+	<script src="../js/bootstrap-3.2.0.min.js"></script>
+	<link href='../css/normalize.min.css' rel='stylesheet' ><!-- -->
+	<link href='../css/bootstrap.min.css' rel='stylesheet' ><!-- main.css -->
+	<link  href='../css/font-awesome.css' rel='stylesheet' >
+	<script src='../js/handlebars.js'></script>
+	<script src='../js/howler.js'></script>
 	<!-- APPS -->
 	<script rel='script' src='../js/main.js'></script>
 	<link rel='stylesheet' href='../css/mymain.css'><!---          buttons            --->
@@ -78,37 +76,14 @@
 	 var dictShort = filterArray_ifDuplicata(dict, 100, "ort", list); 	//cl("D.: "+JSON.stringify(dictShort));	var _C  = now(); 
 
 	 //Data injection & styling
-	 injectTPL(dictShort, list, "#tpl", "#hook", "no");
-     setLexemeCss(knolShort, $(".tpl"));													var _D = now(); 
+	 injectTPL(dictShort, list, "#tpl", "#hook", false);
+     setLexemeCss(knolShort, $(".tpl"))
 	 
      /* *********** PAGE INTERACTIONS ********** */
      $(document).ready(function() {
-         $(".tpl .knol").click(function(){ //var sL_s = now(); 
-			 cl( "K-test_1: "+JSON.stringify(knol));
-             switchStatus(knol, $(this).closest(".tpl") );   // edit data  
-             setLexemeCss(knol, $(this).closest(".tpl") );    // update screen
-			 var impacted = find_items_with_pattern(knol, "ort", $(this).closest(".tpl").attr("data-ort") )
-			 update_items_from_list(knol, impacted);
-			 knol = saveObject(knol, "knol" );	
-			 cl( "K-test_2: "+JSON.stringify(knol));
-         });
-         $(".tpl .favorite").click(function(){
-             switchFavorite(knol, $(this).closest(".tpl") ); // edit data  
-             setLexemeCss(knol, $(this).closest(".tpl")   ); // update screen
-             knol = saveObject(knol, "knol" ); 				 // persistant save (obj, lS)
-         });
-		 $(".tpl .sound").click(function(){ 
-		 	playSound( $(this).closest(".tpl") );
-		 });
-    });																						var _E = now(); 
-     /* *********** APP PERFORMENCE TEST ********** */
-/*	 cl("A←0 load: "+ (_A-_0)/1000);
-	 cl("B←A sort: "+ (_B-_A)/1000);
-	 cl("C←B filt: "+ (_C-_B)/1000);
-	 cl("D←C injt: "+ (_D-_C)/1000);
-	 cl("E←0 _all: "+ (_E-_0)/1000);														var _F = now();
-	 cl("F←E calc: "+ (_F-_E)/1000);
-*/      </script>
+		 add_interaction_hsk_app();
+    }); 
+</script>
 </div><!-- /page -->
 </body>
 </html>

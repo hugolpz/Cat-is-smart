@@ -91,7 +91,7 @@
 {"ortx1":"牛","ort":"牛","pho":"niu2","phox1":"niú", "pos":"n", "def":"ox; cow; bull"},
 {"ortx1":"亮","ort":"亮","pho":"liang4","phox1":"liàng", "pos":"adj, v", "def":"bright; shiny; light; shine; show"},
 {"ortx1":"破","ort":"破","pho":"po4","phox1":"pò", "pos":"v, adj", "def":"broken; damaged; break; destroy"},
-{"ortx1":"公共汽車","ort":"公共汽车","pho":"gong1gong4 qi4che1","phox1":"gōnggòng qìchē", "pos":"n", "def":"bus (for public transit)"},
+{"ortx1":"公共汽車","ort":"公共汽车","pho":"gong1gong4 qi4che1","phox1":"gōnggòng qìchē", "pos":"n", "def":"public bus"},
 {"ortx1":"禮物","ort":"礼物","pho":"li3wu4","phox1":"lǐwù", "pos":"n", "def":"gift; present"},
 {"ortx1":"打算","ort":"打算","pho":"da3suan4","phox1":"dǎsuàn", "pos":"v, n", "def":"plan; intend"},
 {"ortx1":"算","ort":"算","pho":"suan4","phox1":"suàn", "pos":"v", "def":"calculate; compute; include; count"},
@@ -8650,5 +8650,24 @@
 {"ortx1":"作主","ort":"作主","pho":"zuo4 zhu3","phox1":"zuò zhǔ", "pos":"", "def":"decide"},
 {"ortx1":"作法","ort":"作法","pho":"zuo4fa5","phox1":"zuòfa", "pos":"n", "def":"action; practice"},
 {"ortx1":"作廢","ort":"作废","pho":"zuo4fei4","phox1":"zuòfèi", "pos":"v", "def":"cancellation; blank out"},
-{"ortx1":"座右銘","ort":"座右铭","pho":"zuo4you4ming2","phox1":"zuòyòumíng", "pos":"n", "def":"motto"}
+{"ortx1":"座右銘","ort":"座右铭","pho":"zuo4you4ming2","phox1":"zuòyòumíng", "pos":"n", "def":"motto"},
+
+{"ortx1":"北京","ort":"北京","pho":"Bei3jing1","phox1":"Běijīng", "pos":"n", "def":"Beijing city, Pekin, lit. The Northern Capital"},
+{"ortx1":"不客气","ort":"不客氣","pho":"bu4 ke4qi4","phox1":"bù kèqì", "pos":"", "def":"no maners needed, you are welcome"},
+{"ortx1":"下雨","ort":"下雨","pho":"xia4yu3","phox1":"xiàyǔ", "pos":"v,n", "def":"to rain, rain"},
+
+{"ortx1":"麵條","ort":"面条","pho":"mian4tiao2","phox1":"miàntiáo", "pos":"n", "def":"noodles"},
+{"ortx1":"火車站","ort":"火车站","pho":"huo3che1 zhan4","phox1":"huǒchē zhàn", "pos":"n", "def":"train station"},
+{"ortx1":"羊肉","ort":"羊肉","pho":"yang2rou4","phox1":"yángròu","pos":"n", "def":"lamb meat"},
+{"ortx1":"打籃球","ort":"打篮球","pho":"da3 lan2qiu2","phox1":"dǎ lánqiú", "pos":"v", "def":"to play baseketball"},
+{"ortx1":"踢足球","ort":"踢足球","pho":"ti1 zu2qiu2","phox1":"tī zúqiú", "pos":"v", "def":"to play soccer, to play football"},
+
+{"ortx1":"刷牙","ort":"刷牙","pho":"shua1ya2","phox1":"shuāyá", "pos":"v", "def":"to brush teeth"},
+{"ortx1":"行李箱","ort":"行李箱","pho":"xing2li3","phox1":"xínglǐ xiāng", "pos":"n", "def":"luggage"},
+{"ortx1":"皮鞋","ort":"皮鞋","pho":"pi2xie2","phox1":"píxié", "pos":"n", "def":"leather shoes"},
+{"ortx1":"爬山","ort":"爬山","pho":"pa2shan1","phox1":"páshān", "pos":"v,n", "def":"hiking, mountain walk"},
+{"ortx1":"感兴趣","ort":"感興趣","pho":"gan3 xing4qu4","phox1":"gǎn xìngqù", "pos":"adv", "def":"interesting"},
+{"ortx1":"刮风","ort":"刮風","pho":"gua1 feng1","phox1":"guā fēng", "pos":"v, adj", "def":"blow wind, windy"},
+{"ortx1":"黄河","ort":"黄河","pho":"huang2he2","phox1":"huánghé", "pos":"n", "def":"the Huang river, the Yellow rever"},
+{"ortx1":"电子邮件","ort":"电子邮件","pho":"dian4zi3 youjian4","phox1":"diànzǐ yóujiàn", "pos":"n", "def":"email"}	
 ]

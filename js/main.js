@@ -19,19 +19,21 @@ $('header')
 +'	<div class="container-fluid">'
 +'		<!-- Brand and toggle get grouped for better mobile display -->'
 +'		<div class="navbar-header">'
-+'			<a href="/index.html" class="navbar-brand" style="padding: 1px 1px 1px 3px;"><img src="http://static.cfdict.fr/img/cfdict_icon_48x48.png" alt="CFDict"></a>'
++'			<a href="../index.html" class="navbar-brand" style="padding: 1px 1px 1px 3px;"><img src="http://static.cfdict.fr/img/cfdict_icon_48x48.png" alt="CFDict"></a>'
 +'			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#cfdict-navbar-collapse"><span class="sr-only">Toggle navigation</span>  <span class="icon-bar"></span>  <span class="icon-bar"></span>  <span class="icon-bar"></span>'
 +'			</button>'
 +'		</div>'
 +'		<!-- Collect the nav links, forms, and other content for toggling -->'
 +'		<nav class="collapse navbar-collapse" id="cfdict-navbar-collapse">'
 +'			<ul class="menu nav navbar-nav">'
-+'				<li><a href="/pages/search.html"><i class="fa fa-search" alt="Dictionnaire"></i> Dictionary</a></li>'
-+'				<li><a href="/pages/test.html"><i class="fa fa-bomb" alt="Dictionnaire"></i> Test</a></li>'
-+'				<li><a href="/pages/next.html"><i class="fa fa-rocket" alt="Next"></i> Good to learn</a></li>'
-+'				<li><a href="/pages/favorite.html"><i class="fa fa-star" alt="Favorite"></i> Favorite</a></li>'
-+'				<li><a href="/pages/learned.html"><i class="fa fa-check" alt="Learned"></i> Learned</a></li>'
-+'				<li><a href="/pages/about.html"><i class="fa fa-github" alt="Team!"></i> About</a></li>'
++'				<li><a href="../pages/search.html"><i class="fa fa-search" alt="Dictionary"></i> Dictionary</a></li>'
++'				<li><a href="../pages/hsk1.html"><i class="fa fa-graduation-cap" alt="HSK-1"></i> HSK-1</a></li>'
++'				<li><a href="../pages/hsk2.html"><i class="fa fa-graduation-cap" alt="HSK-2"></i> HSK-2</a></li>'
++'				<li><a href="../pages/hsk3.html"><i class="fa fa-graduation-cap" alt="HSK-3"></i> HSK-3</a></li>'
++'				<li><a href="../pages/next.html"><i class="fa fa-rocket" alt="Next"></i> Good to learn</a></li>'
++'				<li><a href="../pages/favorite.html"><i class="fa fa-star" alt="Favorite"></i> Favorite</a></li>'
++'				<li><a href="../pages/learned.html"><i class="fa fa-check" alt="Learned"></i> Learned</a></li>'
++'				<li><a href="../pages/about.html"><i class="fa fa-github" alt="Team!"></i> About</a></li>'
 +'			</ul>'
 +'		</nav>'
 +'	</div>'
@@ -231,12 +233,13 @@ var buildUrlAPI = function (api, array, separator){
 // @list: var-object of keys for items to display
 // @"tplId": str of html id of js template within the html page
 // @"anchor": str of html id of the html anchor/container to receive the items.
-var injectTPL = function (dataORurl, list, $tpl, $hook, indexed, callback) {
+var injectTPL = function (dataOrUrl, list, $tpl, $hook, indexed, callback) {
     console.log("Handlebars TPL = Fired !");
-    var data = dataORurl;
+    var data = dataOrUrl;
+	var missing = [];
 //    function(data) {
-    if($.type(data) === "string" && indexed === "yes"){
-        $.getJSON(dataORurl, function(data) {
+    if($.type(data) === "string" && indexed === true){
+        $.getJSON(dataOrUrl, function(data) {
             for (var i=0; i<list.length; i++) {
                 var lexeme = list[i]; // "火山口";
                 var template = $($tpl).html() ;
@@ -245,11 +248,11 @@ var injectTPL = function (dataORurl, list, $tpl, $hook, indexed, callback) {
             }  callback();  // Invoke our own callback.
         });
     }
-    else if($.type(data)=== "object" && indexed === "yes")   { // index
+    else if($.type(data)=== "object" && indexed === true)   { // index
         for (var i=0; i<list.length; i++) {
-            var lexeme = list[i]; // "火山口";
-            var template = $($tpl).html() ;
-            if(data[lexeme]){ // so empty dict entry don't break the code
+            if(data[list[i]]){ // so empty dict entry don't break the code
+            	var lexeme = list[i]; // "火山口";
+            	var template = $($tpl).html() ;
                 var stone = Handlebars.compile(template)(data[lexeme]);
                 $($hook).append(stone);
             }
@@ -257,18 +260,18 @@ var injectTPL = function (dataORurl, list, $tpl, $hook, indexed, callback) {
     }
     else{ // no index
         for (var j in list) {
-            for(var i in data){
-            if (data[i]["ort"] === list[j]) { 
-                var lexeme = list[j]; // "火山口";
-                var template = $($tpl).html();
-                if(data[i]){ // so empty dict entry don't break the code
-                    var stone = Handlebars.compile(template)(data[i]);
-                    $($hook).append(stone);
-                }
-            }
-        }
+            for(var k=0; k<data.length; k++){
+            	if (data[k]["ort"] === list[j] && data[k]) {  // 2nd so empty dict entry don't break the code
+					var lexeme = list[j]; // "火山口";
+					var template = $($tpl).html();
+					var stone = Handlebars.compile(template)(data[k]);
+					$($hook).append(stone);
+					break;
+		       	}else if(k === data.length -1 && data[k]["ort"] !== list[j]){ missing.push(list[j]); }
+        	}
         }
     }
+	console.log("Dictionary, missing: "+JSON.stringify(missing))
 };
 
 /* ############################################################################# */
@@ -333,6 +336,10 @@ var update_items_from_list = function (json, arr) {
   }
 };
 
+/* ############################################################################# */
+/* ###############module: #####  4.  S C O R I N G  ###################### */
+/* ############################################################################# */
+
 // 2. Mass of item (ci) = Imass = IfRank * Istatus * [ ∑ (CfRank * Cstatus)]
 var calScoreItem  = function (json, item) {  // 0. Mass of one zi
     var mass =  getJsonVal(json, item).status
@@ -367,10 +374,10 @@ var calScoreSumRoots = function (json, word) {
 };
 
 
+/* ############################################################################# */
+/* ###############module: #####  5.  CSS UPDATE or SWITCH   ############################ */
+/* ############################################################################# */
 
-
-
-/* ######################### SWITCH: CSS-JS ####################################  */
 /* META.Fn: loadSwitch [localStorage  => CSS]
  * def: According to data, set the HTML data attributes and thus CSS of elements
  * @object: dictionary of values                                    --obj
@@ -379,6 +386,14 @@ var setLexemeCss = function (object, $item) {
    $item.each(function a(i) {
         var lexeme = $(this).data('ort');
         var val = getJsonVal(object, lexeme);
+		//console.log(lexeme+": "+ JSON.stringify(val));
+		if(val===undefined){ 
+			val = { "rank":20000,"status":1,"score":100000000,"k_date":0,"favorite":0,"f_date":0}; 
+			val.ort= lexeme;
+			// val.score = 
+			knol.push(val);
+		}
+		//console.log(lexeme+": "+ JSON.stringify(val));
 		var visualStatus = "bd-neutral";
 		if(!val.status || val.status===1 ){ val.status = 1; }else{visualStatus = "bg-success bd-success";}
 		if(!val.favorite){ val.favorite = 0;}
@@ -423,18 +438,24 @@ var switchFavorite = function (object, $this) {
 	console.log("F+: "+ lexeme +"; val: " + JSON.stringify(value) +": "+ JSON.stringify(  getJsonVal(object, lexeme)  ) );// edited
  }; // end
 
-/* */
+/* ############################################################################# */
+/* ###############module: #####   6. A U D I O S  ###################### */
+/* ############################################################################# */
+
 var playSound = function ($this) {
 	// get phonetic properties
     var ort = $this.attr("data-ort");
     var pho = $this.attr("data-pho").replace("5", "1"); //pull
 	var key = function() { if( ort.length == 1) { return "syllabs/cmn-"+pho; } else { return "hsk/cmn-"+ort; } };
 	var urls= ['../audio/cmn/'+key()+'.mp3'];
+	// var gurls= ['//translate.google.com/translate_tts?tl=zh-cn&q="'+ort+'"'];
 	$this.addClass("playing");
 
 	// playing
 	var sound = new Howl({
 			urls: urls,
+            format: "mp3",
+            buffer: true,
 			onend: function() {$this.removeClass("playing text-success");}
 	}).play();
 //	play_sounds(urls, $this);
@@ -459,21 +480,54 @@ var play_sounds = function(array_of_audio_urls, $this) {
 
     // playing i+1 audio (= chaining audio files)
     var onEnd = function(e) {
-      if (loop === true ) { pCount = (pCount + 1 !== howlerBank.length)? pCount + 1 : 0; }
-      else { pCount = pCount + 1; }
-	  $this.removeClass("playing text-success");
-      howlerBank[pCount].play();
+		if (loop === true ) { pCount = (pCount + 1 !== howlerBank.length)? pCount + 1 : 0; }
+		else { pCount = pCount + 1; }
+		$this.removeClass("playing text-success");
+		howlerBank[pCount].play();
     };
 
     // build up howlerBank:     
     array_of_audio_urls.forEach(function(current, i) {   
-      howlerBank.push(new Howl({ urls: [array_of_audio_urls[i]], onend: onEnd, buffer: true }))
+      howlerBank.push(new Howl({ urls: [array_of_audio_urls[i]], onend: onEnd, buffer: true }));
     });
 
     // initiate the whole :
         howlerBank[0].play();
-}
-	
-/*
+};
 
+
+
+
+//
+var add_interaction_hsk_app = function(){
+	// KNOL
+	$(".tpl .knol").click(function(){ //var sL_s = now(); 
+		// cl( "K-test_1: "+JSON.stringify(knol));
+		switchStatus(knol, $(this).closest(".tpl") );   // edit data  
+		setLexemeCss(knol, $(this).closest(".tpl") );    // update screen
+		var impacted = find_items_with_pattern(knol, "ort", $(this).closest(".tpl").attr("data-ort") );
+		update_items_from_list(knol, impacted);
+		knol = saveObject(knol, "knol" );	
+		//	 cl( "K-test_2: "+JSON.stringify(knol));
+	});
+	// FAVORITE
+	$(".tpl .favorite").click(function(){
+		switchFavorite(knol, $(this).closest(".tpl") ); // edit data  
+		setLexemeCss(knol, $(this).closest(".tpl")   ); // update screen
+		knol = saveObject(knol, "knol" ); 				 // persistant save (obj, lS)
+	});
+	// SOUND
+	$(".tpl .sound").click(function(){ 
+		playSound( $(this).closest(".tpl") );
+	});	
+};
+	
+/* *********** APP PERFORMENCE TEST ********** */
+/*
+	cl("A←0 load: "+ (_A-_0)/1000);
+	cl("B←A sort: "+ (_B-_A)/1000);
+	cl("C←B filt: "+ (_C-_B)/1000);
+	cl("D←C injt: "+ (_D-_C)/1000);
+	cl("E←0 _all: "+ (_E-_0)/1000);														var _F = now();
+	cl("F←E calc: "+ (_F-_E)/1000); 
 */
