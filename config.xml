@@ -2,8 +2,8 @@
 <widget xmlns     = "http://www.w3.org/ns/widgets"
 		xmlns:gap = "http://phonegap.com/ns/1.0"
 		id        = "fr.cfdict.hsk"
-		version   = "0.3.0"
-		versionCode = "0.3.0">
+		version   = "0.4.0"
+		versionCode = "0.4.0">
 	
 	<!-- http://docs.build.phonegap.com/en_US/3.1.0/configuring_preferences.md.html#Preferences -->
 		<preference name="phonegap-version" value="3.5.0" />
