@@ -7,10 +7,9 @@
 
 
 /* ############################################################################# */
-/* ###############module: #####  1. W R A P P I N G  & T R I V I A  ############ */
+/* ###############module: #####  1. W R A P P I N G   D O M ############ */
 /* ############################################################################# */
-var cl = function (message) { console.log(message);};
-var now = function() { return timeStamp( new Date()); };
+
 /* ######################### UI: HEADER, FOOTER ####################################  */
 function appendJQMHeader(pageTitle) {
 $('header')
@@ -29,7 +28,7 @@ $('header')
 +'				<li><a href="../pages/search.html"><i class="fa fa-search" alt="Dictionary"></i> Dictionary</a></li>'
 +'				<li><a href="../pages/hsk1.html"><i class="fa fa-graduation-cap" alt="HSK-1"></i> HSK-1</a></li>'
 +'				<li><a href="../pages/hsk2.html"><i class="fa fa-graduation-cap" alt="HSK-2"></i> HSK-2</a></li>'
-+'				<li><a href="../pages/hsk3.html"><i class="fa fa-graduation-cap" alt="HSK-3"></i> HSK-3</a></li>'
++'				<li><a href="/pages/hsk3.html"><i class="fa fa-graduation-cap" alt="HSK-3"></i> HSK-3</a></li>'
 +'				<li><a href="../pages/next.html"><i class="fa fa-rocket" alt="Next"></i> Good to learn</a></li>'
 +'				<li><a href="../pages/favorite.html"><i class="fa fa-star" alt="Favorite"></i> Favorite</a></li>'
 +'				<li><a href="../pages/learned.html"><i class="fa fa-check" alt="Learned"></i> Learned</a></li>'
@@ -41,14 +40,25 @@ $('header')
 }
 
 function appendJQMFooter(left, right) {
-$('footer')
-  .append('<footer data-role="footer" data-theme="a" class="jqm-footer"><p>&copy;'+left+'!</p><p class="jqm-version">—'+right+'</p></footer>');
+	$('footer').append(
+		'<footer data-role="footer" data-theme="a" class="jqm-footer"><p>&copy;'+left+'!</p><p class="jqm-version">—'+right+'</p></footer>');
 }
 
+/* ############################################################################# */
+/* ###############module: #####  2. UTILITIES   ################################ */
+/* ############################################################################# */
+var now = function() { return new Date(); };
+var cl = function (message) { console.log(message);};
+	cl.timer = function(array){
+	for(var i=0; i<array.length -1;i++){ // ⟶⇒
+		console.log("Period_"+i+"⟶"+(i+1)+" : "+(array[i+1]-array[i])/1000+"sec.");
+	}
+	console.log("Period_0⟶"+(array.length-1)+" : "+(array[array.length-1]-array[0])/1000+"sec.");
+};
 /* ############## UTILITIES ###################  */
 /* META.Fn: timeStamp() 
  * def: create a timestamp with 17 digits military format
- * @o: date object, usually new Date()                        --obj
+ * @o: date object, usually new Date()              --obj
  * @return: military date as YYYYMMDDhhmmsslll      --str */
 var timeStamp = function(d) { // Date d
         var y = d.getUTCFullYear(),
@@ -57,7 +67,7 @@ var timeStamp = function(d) { // Date d
             h = d.getUTCHours(),
             m = d.getUTCMinutes(),
             s = d.getUTCSeconds(),
-            ms = d.getUTCMilliseconds();
+            ms= d.getUTCMilliseconds();
         function pad(x) { // or pad = function(x) {}; call etant pad(...);
                 x = x+'';
                 if (x.length === 1) { return '0' + x;}

@@ -61,29 +61,32 @@
 <!-- --------------------------------------------------------------------- -->
 <!-- --------------------------------------------------------------------- -->
       
- <script> 																					var _0 = now();
-	appendJQMHeader('Home'); 
+ <script>
+	appendJQMHeader('HSK2'); 
     //appendJQMFooter('—Hugo', 'JQM 1.3.1Beta');
+	var timer = []; 												timer.push( now() ); //0⟶1
 
     /* *********** LOADING DATA ********** */
-    var dict = loadJSONFile('../data/dict-hsk8653.json', "dict"); //cl("D: "+JSON.stringify(dict) );
-    var knol = loadJSONFile('../data/knol-16000.json', "knol"); cl("K: "/* + JSON.stringify(knol) */ ); var _A = now();
-	var hsk  = loadJSONFile('../data/list-hsk.json', "hsk");
+    var dict = loadJSONFile('../data/dict-hsk8653.json', "dict");
+    var knol = loadJSONFile('../data/knol-16000.json', "knol");
+	var hsk  = loadJSONFile('../data/list-hsk.json', "hsk");		timer.push( now() ); //1⟶2
 	 
 	/* *********** PAGE INITIALISATION ********** */
     //Preprocessing data
-    var list = hsk.ci_2;		
+    var list = hsk.ci_2;											timer.push( now() );  //2⟶3
   	// var url = buildUrlAPI("http://dev.cfdict.fr/api/hant/q/", list, "|"); console.log("U: "+url );
-	var dictShort = filterArray_ifDuplicata(dict, list.length, "ort", list); 
+	var dictShort = filterArray_ifDuplicata(dict, list.length, "ort", list); timer.push( now() ); //3⟶4
 
 	 //Data injection & styling
-	 injectTPL(dictShort, list, "#tpl", "#hook", false);
-     setLexemeCss(knol, $(".tpl"))
+	 injectTPL(dictShort, list, "#tpl", "#hook", false); 			timer.push( now() ); //4⟶5
+     setLexemeCss(knol, $(".tpl"));									timer.push( now() ); //5⟶6
 	 
      /* *********** PAGE INTERACTIONS ********** */
      $(document).ready(function() {
 		 add_interaction_hsk_app();
-    }); 
+    }); 															timer.push( now() ); // 6 = end.
+	 
+	cl.timer(timer);
 </script>
 <!-- --------------------------------------------------------------------- -->
 <!-- --------------------------------------------------------------------- -->

@@ -47,22 +47,20 @@
     </div><!-- /content -->
   <footer></footer><!-- /footer -->
 
-<script> 									var _0 = now();
+<script> 									
+	var timer = []; 												timer.push( now() );
 	appendJQMHeader('Home');
 	//appendJQMFooter('—Hugo', 'JQM 1.3.1Beta');
-	console.log("Avant")
 	var pages = webpages;
 	var list = [ "1", "3", "4", "5", "6", "7", "8" ];
-	injectTPL(pages, list, "#tpl", "#hook", "no");
-
-	/* *********** LOADING DATA ********** */	 
-	//localStorage.removeItem("dict");
-	//localStorage.removeItem("knol");
-	var dict = loadJSONFile('./data/dict-hsk8653.json', "dict"); cl("D: "+JSON.stringify(dict) );
-	var knol = loadJSONFile('./data/knol-16000.json', "knol"); cl("K: "/* + JSON.stringify(knol) */ ); var _A = now();
+	injectTPL(pages, list, "#tpl", "#hook", "no"); 					timer.push( now() );
+	
+    /* *********** LOADING DATA ********** */
+    var dict = loadJSONFile('../data/dict-hsk8653.json', "dict");
+    var knol = loadJSONFile('../data/knol-16000.json', "knol");
+	var hsk  = loadJSONFile('../data/list-hsk.json', "hsk"); 		timer.push( now() );
 	// knol = updateJsonScores(knol); 
-	console.log("Après")
-	/*  LIST IS NOT DEFINED, because inject tpl expect character list ! need hack : hant = 1, 2, 3.. */
+	cl.timer(timer);
 </script>
 </div><!-- /page -->
 </body>
