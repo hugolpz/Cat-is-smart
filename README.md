@@ -4,7 +4,8 @@
 ```
 git clone https://github.com/hugolpz/Cat-is-smart.git
 mkdir -p ./audio ./audio/cmn;
-git clone https://github.com/hugolpz/audio-cmn.git ./audio/cmn```
+git clone https://github.com/hugolpz/audio-cmn.git ./audio/cmn
+```
 
 <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
 <div class="row well">
