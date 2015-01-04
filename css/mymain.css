@@ -62,18 +62,22 @@ def:nth-child(10):before { content: "; ⑩"; font-size: 1.5em; }
 /*******************************************/
 /*              INTERACTIONS               */
 /*******************************************/
-.sound, .knol, .favorite { font-size: 2em; color:grey; }
+.sound, .knol, .favorite { 
+	font-size: 2em; 
+	width: 1em; height:1em;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+	background-origin: content-box; }
+
+
+.sound { color: grey; }
 .playing .sound { color: green; }
-
-
-/*******************************************/
-/*               MONITORING                */
-/*******************************************/
-
 .tpl[data-status="1"   ] .knol { color:grey;  }
-.tpl[data-status="0.01"] .knol { color:green;}
-.tpl[data-favorite="1" ] .favorite { color:yellow; }
-.tpl[data-favorite="0" ] .favorite { color:grey; }
+.tpl[data-status="0.6"] .knol { color:red; }
+.tpl[data-status="0.4"] .knol { color:orange; }
+.tpl[data-status="0.01"] .knol { color:green; }
+.tpl[data-favorite="1" ] .favorite { color:#ddc02c; } /*background-image: url(../img/star128.png);*/
+.tpl[data-favorite="0" ] .favorite { color:grey; } /*background-image: url(../img/star128.png);*/
 
 /*******************************************/
 /*        TO DELETE IS PROVEN USELESS      */
@@ -108,7 +112,7 @@ def:nth-child(10):before { content: "; ⑩"; font-size: 1.5em; }
 /* BUTTONS> text: */
 
 /*  BOUTTONS> shape */
-button.betn {
+button.btn2 {
   font-size: 1em;
   float: left;
   margin: 5px;
@@ -125,21 +129,41 @@ button.betn {
   cursor: pointer;
   transition: color .3s ease;
 }
-.btn.status1 { 
+.btn2[data-status="0"] { 
   color: red;
 }
-.btn.status1:hover {
+.btn2[data-status="1"]:hover {
   color: #BC2C2C;
 }
-.btn.status0 {
+.btn2[data-status="0"] {
   box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.4), 0 3px 0 -1px rgba(98, 98, 98, 0.5), inset 0 4px 15px -2px rgba(0, 0, 0, 0.5);
   color: green;
 }
-.btn.status0:hover {
+.btn2[data-status="0"]:hover {
   outline:none; /* useless*/
   color: #308830;
 }
 /*******************************************/
+
+
+.panel-danger>.panel-heading {
+background-color: #df3e3e;
+border: 1px solid #a00;
+color: #fff;
+text-shadow: 0 -1px 0 #900;
+}
+.panel-warning>.panel-heading {
+background-color: #f0ad4e;
+border: 1px solid #eea236;
+color: #fff;
+text-shadow: 0 -1px 0 #950;
+}
+.panel-default>.panel-heading {
+color: #333;
+background-color: #e5e5e5;/* #f5f5f5; */
+border-color: #ddd;
+text-shadow: 0 -1px 0 #555;
+}
 
 
 

@@ -18,21 +18,22 @@ $('header')
 +'	<div class="container-fluid">'
 +'		<!-- Brand and toggle get grouped for better mobile display -->'
 +'		<div class="navbar-header">'
-+'			<a href="../index.html" class="navbar-brand" style="padding: 1px 1px 1px 3px;"><img src="http://static.cfdict.fr/img/cfdict_icon_48x48.png" alt="CFDict"></a>'
-+'			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#cfdict-navbar-collapse"><span class="sr-only">Toggle navigation</span>  <span class="icon-bar"></span>  <span class="icon-bar"></span>  <span class="icon-bar"></span>'
++'			<a href="./index.html" class="navbar-brand" style="padding: 1px 1px 1px 3px;"><img src="http://static.cfdict.fr/img/cfdict_icon_48x48.png" alt="CFDict"></a>'  
++'			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#cfdict-navbar-collapse">'
++'				<span class="sr-only">Toggle navigation</span>  <span class="icon-bar"></span>  <span class="icon-bar"></span>  <span class="icon-bar"></span>'
 +'			</button>'
 +'		</div>'
 +'		<!-- Collect the nav links, forms, and other content for toggling -->'
 +'		<nav class="collapse navbar-collapse" id="cfdict-navbar-collapse">'
 +'			<ul class="menu nav navbar-nav">'
-+'				<li><a href="../pages/search.html"><i class="fa fa-search" alt="Dictionary"></i> Dictionary</a></li>'
-+'				<li><a href="../pages/hsk1.html"><i class="fa fa-graduation-cap" alt="HSK-1"></i> HSK-1</a></li>'
-+'				<li><a href="../pages/hsk2.html"><i class="fa fa-graduation-cap" alt="HSK-2"></i> HSK-2</a></li>'
-+'				<li><a href="/pages/hsk3.html"><i class="fa fa-graduation-cap" alt="HSK-3"></i> HSK-3</a></li>'
-+'				<li><a href="../pages/next.html"><i class="fa fa-rocket" alt="Next"></i> Good to learn</a></li>'
-+'				<li><a href="../pages/favorite.html"><i class="fa fa-star" alt="Favorite"></i> Favorite</a></li>'
-+'				<li><a href="../pages/learned.html"><i class="fa fa-check" alt="Learned"></i> Learned</a></li>'
-+'				<li><a href="../pages/about.html"><i class="fa fa-github" alt="Team!"></i> About</a></li>'
++'				<li><a href="./search.html"><i class="fa fa-search" alt="Dictionary"></i> Dictionary</a></li>'
++'				<li><a href="./hsk1.html"><i class="fa fa-graduation-cap" alt="HSK-1"></i> HSK-1</a></li>'
++'				<li><a href="./hsk2.html"><i class="fa fa-graduation-cap" alt="HSK-2"></i> HSK-2</a></li>'
++'				<li><a href="./hsk3.html"><i class="fa fa-graduation-cap" alt="HSK-3"></i> HSK-3</a></li>'
++'				<li><a href="./next.html"><i class="fa fa-rocket" alt="Next"></i> Good to learn</a></li>'
++'				<li><a href="./favorite.html"><i class="fa fa-star" alt="Favorite"></i> Favorite</a></li>'
++'				<li><a href="./learned.html"><i class="fa fa-check" alt="Learned"></i> Learned</a></li>'
++'				<li><a href="./about.html"><i class="fa fa-github" alt="Team!"></i> About</a></li>'
 +'			</ul>'
 +'		</nav>'
 +'	</div>'
@@ -461,13 +462,22 @@ var playSound = function ($this) {
 	// var gurls= ['//translate.google.com/translate_tts?tl=zh-cn&q="'+ort+'"'];
 	$this.addClass("playing");
 
-	// playing
+	// HTML5 Audio > HowlerJS
+//    if (typeof Audio != "undefined") { 
 	var sound = new Howl({
-			urls: urls,
-            format: "mp3",
-            buffer: true,
-			onend: function() {$this.removeClass("playing text-success");}
-	}).play();
+		urls: urls,
+	//	format: "mp3",
+	//	buffer: true,
+		onend: function() {$this.removeClass("playing");}
+	});
+	sound.play();
+
+    // ELSE > Phonegap media
+	// src: http://stackoverflow.com/a/15598186/1974961
+/*    } else if (typeof device != "undefined") {
+		var media = new Media(urls);
+		media.play();
+	} */
 //	play_sounds(urls, $this);
 	// $this.find("audio")[0].play(); // with <audio src="../cmn/audio/cmn-{{pho}}.mp3"></audio>
 	console.log("♪+:ort: "+ ort +" ; pho: " +pho+" ; key: "+key() );// edited
@@ -502,7 +512,7 @@ var play_sounds = function(array_of_audio_urls, $this) {
     });
 
     // initiate the whole :
-        howlerBank[0].play();
+	howlerBank[0].play();
 };
 
 
@@ -513,6 +523,7 @@ var add_interaction_hsk_app = function(){
 	// KNOL
 	$(".tpl .knol").click(function(){ //var sL_s = now(); 
 		// cl( "K-test_1: "+JSON.stringify(knol));
+		// $(this).closest(".tpl").attr("data-status")
 		switchStatus(knol, $(this).closest(".tpl") );   // edit data  
 		setLexemeCss(knol, $(this).closest(".tpl") );    // update screen
 		var impacted = find_items_with_pattern(knol, "ort", $(this).closest(".tpl").attr("data-ort") );
@@ -532,12 +543,4 @@ var add_interaction_hsk_app = function(){
 	});	
 };
 	
-/* *********** APP PERFORMENCE TEST ********** */
-/*
-	cl("A←0 load: "+ (_A-_0)/1000);
-	cl("B←A sort: "+ (_B-_A)/1000);
-	cl("C←B filt: "+ (_C-_B)/1000);
-	cl("D←C injt: "+ (_D-_C)/1000);
-	cl("E←0 _all: "+ (_E-_0)/1000);														var _F = now();
-	cl("F←E calc: "+ (_F-_E)/1000); 
-*/
+/* *********** END ********** */

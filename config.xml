@@ -19,12 +19,15 @@
 		<author href="https://dev.cfdict.net" real="cfdict.fr!" email="hugo.lpz@gmail.com"> HL</author>
 
 		<feature name="http://api.phonegap.com/1.0/device" />
-
+		<content src="html/index.html" />
 		<gap:platforms>
 		  <gap:platform name="ios" />
 		  <gap:platform name="android" />
 		  <gap:platform name="winphone" />
 		</gap:platforms>
+
+	<gap:plugin name="org.apache.cordova.media" version="0.2.13" />
+	<gap:plugin name="org.apache.cordova.file"  version="1.3.1" />
 
 
 	<icon src="icon.png" /><!--
