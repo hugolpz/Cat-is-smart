@@ -1,6 +1,10 @@
 ## Cat-is-smart
 **Cat-is-smart** is a modern & multimedia web/mobile application to learn Chinese vocabulary smartly.
 
+```git clone https://github.com/hugolpz/Cat-is-smart.git
+mkdir -p ./audio ./audio/cmn;
+git clone https://github.com/hugolpz/audio-cmn.git ./audio/cmn```
+
 <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
 <div class="row well">
     <div class="col-xs-12 col-md-6">
