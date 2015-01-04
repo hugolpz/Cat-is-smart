@@ -458,7 +458,7 @@ var playSound = function ($this) {
     var ort = $this.attr("data-ort");
     var pho = $this.attr("data-pho").replace("5", "1"); //pull
 	var key = function() { if( ort.length == 1) { return "syllabs/cmn-"+pho; } else { return "hsk/cmn-"+ort; } };
-	var urls= ['../audio/cmn/'+key()+'.mp3'];
+	var urls= ['../audio/cmn/64k/'+key()+'.mp3'];
 	// var gurls= ['//translate.google.com/translate_tts?tl=zh-cn&q="'+ort+'"'];
 	$this.addClass("playing");
 
