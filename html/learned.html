@@ -75,6 +75,7 @@
 	 var dictShort = filterArray_ifDuplicata(dict, 100, "ort", list); 	cl("D.: "+JSON.stringify(dictShort));	var _C  = now(); 
 
 	 //Data injection & styling
+	 if(list.length==0){ $("#hook").append('<div id="message" class="text-center"> You must first check some tigers (words) on previous pages !</div>')}
 	 injectTPL(dictShort, list, "#tpl", "#hook", false);
      setLexemeCss(knolShort, $(".tpl"))
 	 

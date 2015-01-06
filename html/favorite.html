@@ -28,7 +28,8 @@
   <div data-role="page" data-theme="b">
   <header></header><!-- /header -->
 
-<div id="hook" data-role="content container-fluid">
+	  <div id="hook" data-role="content container-fluid">
+    </div><!-- /content -->
 <script id="tpl" type="text/template">
 	<div class="row tpl next left-bd-indicator bg-success" data-lexeme="{{ort}}{{pho}}" data-ort="{{ort}}" data-pho="{{pho}}">
 		<div class="col-xs-9 col-sm-9 col-md-9 vcenter">
@@ -49,7 +50,6 @@
 	</div>
     </script><!-- {{#fr}}<p>{{.}}</p>{{/fr}} : array fr, each element-->
 
-    </div><!-- /content -->
   <footer></footer><!-- /footer -->
       
  <script> 																					var _0 = now();
@@ -75,6 +75,7 @@
 	 var dictShort = filterArray_ifDuplicata(dict, 100, "ort", list); 	cl("D.: "+JSON.stringify(dictShort));	var _C  = now(); 
 
 	 //Data injection & styling
+	 if(list.length==0){ $("#hook").append('<div id="message" class="text-center"> You must first star some tigers (words) on previous pages !</div>')}
 	 injectTPL(dictShort, list, "#tpl", "#hook", false);
      setLexemeCss(knolShort, $(".tpl"))
 	 
