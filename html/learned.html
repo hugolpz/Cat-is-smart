@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title>Learned !</title>    
+	<!-- FRAMEWORKS -->
+	<script src="../js/jquery-2.1.0.min.js"></script>
+	<script src="../js/jquery.mobile-1.4.1.min.js"></script>
+	<script src="../js/bootstrap-3.2.0.min.js"></script>
+	<link href='../css/normalize.min.css' rel='stylesheet' ><!-- -->
+	<link href='../css/bootstrap.min.css' rel='stylesheet' ><!-- main.css -->
+	<link  href='../css/font-awesome.css' rel='stylesheet' >
+	<script src='../js/handlebars.js'></script>
+	<script src='../js/howler.js'></script>
+	<!-- APPS -->
+	<script rel='script' src='../js/main.js'></script>
+	<link rel='stylesheet' href='../css/mymain.css'><!---          buttons            --->
+	<!-- PAGE -->
+	<!-- <link rel='stylesheet' href='http://andymatthews.net/code/jQuery-Mobile-Bootstrap-Theme/themes/Bootstrap.css'> 
+/* http://jquerymobile.com/themeroller/?ver=1.3.0-rc.1&style_id=20130212-93 */
+*/
+
+-->
+</head>
+
+<body>
+  <div data-role="page" data-theme="b">
+  <header></header><!-- /header -->
+
+<div id="hook" data-role="content container-fluid">
+<script id="tpl" type="text/template">
+	<div class="row tpl next left-bd-indicator bg-success" data-lexeme="{{ort}}{{pho}}" data-ort="{{ort}}" data-pho="{{pho}}">
+		<div class="col-xs-9 col-sm-9 col-md-9 vcenter">
+<!--				<audio src="../audio/cmn-{{pho}}.mp3"></audio>  -->
+		    <e class="sound fa fa-play" ><!-- ♪ --></e>
+<!--			<button onclick="new Howl({             			-->
+<!--		 	 urls: ['../cmn/audio/cmn-{{pho}}.mp3']             -->
+<!--			}).play();">♪</button>                              -->
+			<span class="ort">{{ort}} </span>
+			<span class="pho">{{phox1}}</span>: 
+			<span class="pos">{{pos}}. </span>
+			<span class="def">{{#def}}<span class="sem"> {{.}}</span>{{/def}}</span>
+		</div><!--
+		--><div class="col-xs-3 col-sm-3 col-md-3 vcenter"><!-- .btn-group not elegant-->
+		  <e class="favorite fa fa-star pull-right"><!-- ★  --></e>
+		  <e class="knol fa fa-check pull-right"><!-- ✓ --></e>
+        </div>
+	</div>
+    </script><!-- {{#fr}}<p>{{.}}</p>{{/fr}} : array fr, each element-->
+
+    </div><!-- /content -->
+  <footer></footer><!-- /footer -->
+      
+ <script> 																					var _0 = now();
+	appendJQMHeader('Home'); 
+    //appendJQMFooter('—Hugo', 'JQM 1.3.1Beta');
+	 
+	// localStorage.removeItem("dict");
+	// localStorage.removeItem("knol");
+    
+    /* *********** LOADING DATA ********** */
+ 	var dict = loadJSONFile('../data/dict-hsk8653.json', "dict"); //cl("D: "+JSON.stringify(dict) );
+    var knol = loadJSONFile('../data/knol-16000.json', "knol"); cl("K: "/* + JSON.stringify(knol) */ ); var _A = now();
+	// knol = updateJsonScores(knol); 
+
+	 
+	 /* *********** PAGE INITIALISATION ********** */
+     //Preprocessing data
+         knol = sortJSON(knol, "k_date", "321");   				cl("S⚙: "); 				var _B  = now();
+     var knolShort = filterArray(knol, 100, "status", 0.01);  		cl("K.: "+JSON.stringify(knolShort) );
+     var knolShort = sortJSON(knolShort, "k_date", "321");  
+	 var list = getArray_Keys(knolShort, "ort"); 				cl("L: "+JSON.stringify(list) );
+  	// var url = buildUrlAPI("http://dev.cfdict.fr/api/hant/q/", list, "|"); console.log("U: "+url );
+	 var dictShort = filterArray_ifDuplicata(dict, 100, "ort", list); 	cl("D.: "+JSON.stringify(dictShort));	var _C  = now(); 
+
+	 //Data injection & styling
+	 injectTPL(dictShort, list, "#tpl", "#hook", false);
+     setLexemeCss(knolShort, $(".tpl"))
+	 
+     /* *********** PAGE INTERACTIONS ********** */
+     $(document).ready(function() {
+		 add_interaction_hsk_app();
+    }); 
+</script>
+</div><!-- /page -->
+</body>
+</html>

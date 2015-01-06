@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title>Home</title> 
+	<script src="../phonegap.js"></script>   
+	<!-- FRAMEWORKS -->
+	<script src="../js/jquery-2.1.0.min.js"></script>
+	<script src="../js/bootstrap-3.2.0.min.js"></script>
+	<link href='../css/normalize.min.css' rel='stylesheet' ><!-- -->
+	<link href='../css/bootstrap.min.css' rel='stylesheet' ><!-- main.css -->
+	<link  href='../css/font-awesome.css' rel='stylesheet' >
+	<script src='../js/handlebars.js'></script>
+	<script src='../js/howler.js'></script>
+	<!-- APPS -->
+	<script rel='script' src='../js/main.js'></script>
+	<link rel='stylesheet' href='../css/mymain.css'><!---          buttons            --->
+	<!-- PAGE -->
+	<!-- <link rel='stylesheet' href='http://andymatthews.net/code/jQuery-Mobile-Bootstrap-Theme/themes/Bootstrap.css'> 
+/* http://jquerymobile.com/themeroller/?ver=1.3.0-rc.1&style_id=20130212-93 */
+*/
+
+-->
+</head>
+
+<body>
+  <div data-role="page" data-theme="b">
+  <header></header><!-- /header -->
+<div id="hook" class="row margin" data-role="content container-fluid">
+
+<script rel='script' src='../data/pages.js'></script>
+<script id="tpl" type="text/template">
+<a href="{{href}}.html" style="width:100%;">
+<div class="row bd-{{class}} bg-{{class}} text-{{class}}" style="width:100%;padding:.1em;margin:-.1em;border: .1em solid;">
+      <!-- <img data-src=".{{img}}" alt="{{alt}}"></img> -->
+      <div class="text-center col-xs-3 col-sm-3 col-md-3 "><i class="{{icon}}" style="font-size:3em; float:center;"></i><br />{{title}}}</div>
+	  <div class="col-xs-9 col-sm-9 col-md-9 text-left vcenter" style="font-size:1.3em;">
+        <div class="vcenter">{{text}} <i class="fa fa-chevron-right text-right"></i></div>
+      </div>
+</div>
+</a>
+    </script><!-- {{#fr}}<p>{{.}}</p>{{/fr}} : array fr, each element-->
+
+    </div><!-- /content -->
+  <footer></footer><!-- /footer -->
+
+<script> 									
+	var timer = []; 												timer.push( now() );
+	appendJQMHeader('Home');
+	//appendJQMFooter('—Hugo', 'JQM 1.3.1Beta');
+	var pages = webpages;
+	var list = [ "1", "3", "4", "5", "6", "7", "8"];
+	injectTPL(pages, list, "#tpl", "#hook", "no"); 					timer.push( now() );
+	
+    /* *********** LOADING DATA ********** */
+    var dict = loadJSONFile('../data/dict-hsk8653.json', "dict");
+    var knol = loadJSONFile('../data/knol-16000.json', "knol");
+	var hsk  = loadJSONFile('../data/list-hsk.json', "hsk"); 		timer.push( now() );
+	// knol = updateJsonScores(knol); 
+	cl.timer(timer);
+</script>
+</div><!-- /page -->
+</body>
+</html>

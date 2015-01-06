@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title>Good to learn!</title>    
+	<!-- FRAMEWORKS -->
+	<script src="../js/jquery-2.1.0.min.js"></script>
+	<script src="../js/jquery.mobile-1.4.1.min.js"></script>
+	<script src="../js/bootstrap-3.2.0.min.js"></script>
+	<link href='../css/normalize.min.css' rel='stylesheet' ><!-- -->
+	<link href='../css/bootstrap.min.css' rel='stylesheet' ><!-- main.css -->
+	<link  href='../css/font-awesome.css' rel='stylesheet' >
+	<script src='../js/handlebars.js'></script>
+	<script src='../js/howler.js'></script>
+	<!-- APPS -->
+	<script rel='script' src='../js/main.js'></script>
+	<link rel='stylesheet' href='../css/mymain.css'><!---          buttons            --->
+	<!-- PAGE -->
+	<!-- <link rel='stylesheet' href='http://andymatthews.net/code/jQuery-Mobile-Bootstrap-Theme/themes/Bootstrap.css'> 
+/* http://jquerymobile.com/themeroller/?ver=1.3.0-rc.1&style_id=20130212-93 */
+*/
+
+-->
+</head>
+
+<body>
+  <div data-role="page" data-theme="b">
+  <header></header><!-- /header -->
+
+<div id="hook" data-role="content container-fluid">
+<script id="tpl" type="text/template">
+	<div class="row tpl next left-bd-indicator bg-success" data-ort="{{ort}}" data-pho="{{pho}}" data-lexeme="{{ort}}{{pho}}">
+		<div class="col-xs-9 col-sm-9 col-md-9 vcenter">
+<!--				<audio src="../audio/cmn-{{pho}}.mp3"></audio>  -->
+		    <e type="button" class="sound fa fa-volume-up" ><!-- ♪ --></e>
+<!--			<button onclick="new Howl({             			-->
+<!--		 	 urls: ['../cmn/audio/cmn-{{pho}}.mp3']             -->
+<!--			}).play();">♪</button>                              -->
+			<span class="ort">{{ort}}</span>
+			<span class="pho">{{phox1}}</span>: 
+			<span class="pos">{{pos}}. </span>
+			<span class="def">{{#def}}<span class="sem"> {{.}}</span>{{/def}}</span>
+		</div><!--
+		--><div class="col-xs-3 col-sm-3 col-md-3 vcenter"><!-- .btn-group not elegant-->
+		  <e type="button" class="favorite fa fa-star pull-right"><!-- ★  --></e>
+		  <e type="button" class="knol fa fa-check pull-right"><!-- ✓ --></e>
+        </div>
+	</div>
+    </script><!-- {{#fr}}<p>{{.}}</p>{{/fr}} : array fr, each element-->
+
+    </div><!-- /content -->
+  <footer></footer><!-- /footer -->
+      
+ <script>
+	appendJQMHeader('HSK1'); 
+    //appendJQMFooter('—Hugo', 'JQM 1.3.1Beta');
+	var timer = []; 												timer.push( now() ); //0⟶1
+
+    /* *********** LOADING DATA ********** */
+    var dict = loadJSONFile('../data/dict-hsk8653.json', "dict");
+    var knol = loadJSONFile('../data/knol-16000.json', "knol");
+	var hsk  = loadJSONFile('../data/list-hsk.json', "hsk");		timer.push( now() ); //1⟶2
+	 
+	/* *********** PAGE INITIALISATION ********** */
+    //Preprocessing data
+    var list = hsk.ci_1;											timer.push( now() );  //2⟶3
+  	// var url = buildUrlAPI("http://dev.cfdict.fr/api/hant/q/", list, "|"); console.log("U: "+url );
+	var dictShort = filterArray_ifDuplicata(dict, list.length, "ort", list); timer.push( now() ); //3⟶4
+
+	 //Data injection & styling
+	 injectTPL(dictShort, list, "#tpl", "#hook", false); 			timer.push( now() ); //4⟶5
+     setLexemeCss(knol, $(".tpl"));									timer.push( now() ); //5⟶6
+	 
+     /* *********** PAGE INTERACTIONS ********** */
+     $(document).ready(function() {
+		 add_interaction_hsk_app();
+    }); 															timer.push( now() ); // 6 = end.
+																	cl.timer(timer);
+</script>
+</div><!-- /page -->
+</body>
+</html>
