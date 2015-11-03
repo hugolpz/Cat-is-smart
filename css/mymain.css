@@ -1,5 +1,34 @@
 /* APPS.style */
 * { transition: 0.6s; }
+@font-face {
+    font-family:'zenkai';
+  src:url('../fonts/ar_pl_zenkai_uni2.woff') format('woff'), 
+	  url('../fonts/ar_pl_zenkai_uni.ttf') format('truetype'), 
+	  url('../fonts/AR_PL_UKai_CN.ttc') format('truetype');/* */
+	font-weight: normal;
+	font-style: normal; }
+
+@font-face {
+ 	font-family: "test";
+	src: url("https://developer.mozilla.org/@api/deki/files/2934/=VeraSeBd.ttf");
+}
+@font-face { 
+	font-family: 'UKai'; 
+	src: url('../fonts/AR_PL_UKai_CN.ttc'); }
+
+body {
+
+    -webkit-animation-delay: 0.1s;
+    -webkit-animation-name: fontfix;
+    -webkit-animation-duration: 0.1s;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-timing-function: linear;
+}
+
+@-webkit-keyframes fontfix {
+    from { opacity: 1; }
+    to   { opacity: 1; }
+}
 /*******************************************/
 /*                STRUCTURE                */
 /*******************************************/
@@ -25,8 +54,8 @@ html, body, #hook { height: 100%; width: 100%; }
 /*                LEXICOGRAPHIC                       */
 /*******************************************/
 /* Lexicography > color */
-.ort { font-size: 2em; color: #B10000; }
-.pho { color: green; font-weight: 700; }
+.ort { font-size: 2em; color: #B10000; font-family: 'zenkai'; }
+.pho { color: green; font-weight: 700; min-width: 6em; }
 .pos { color: #888; font-style: italic; font-weight: 700; }
 .def { color: black; font-style: normal; }
 /* Lexicography > sem */
@@ -46,6 +75,8 @@ html, body, #hook { height: 100%; width: 100%; }
 .def .sem:nth-child(14):before { content: "; ⓮"; font-size: 1.2em; }
 .def .sem:nth-child(15):before { content: "; ⓯"; font-size: 1.2em; }
 
+.exe:nth-child(1):before { content: ", ex: "; font-size: .9em; }
+
 /* Lexicography > phon:
 def:nth-child(1):before  { content:   "①"; font-size: 1.5em; }
 def:nth-child(2):before  { content: "; ②"; font-size: 1.5em; }
@@ -63,7 +94,7 @@ def:nth-child(10):before { content: "; ⑩"; font-size: 1.5em; }
 /*              INTERACTIONS               */
 /*******************************************/
 .sound, .knol, .favorite { 
-	font-size: 2em; 
+	font-size: 1.5em; 
 	width: 1em; height:1em;
     background-repeat: no-repeat;
     background-size: 100% 100%;

@@ -55,16 +55,16 @@
 	Heisig curriculum > Most basic characters are learn first, easing memorization.  -->
 	<script>
 	var lists = [
-		{ file : 'list-hsk.json', name: 'HSK 2012 words pathway, Begginer', description: '. The lastest HSK words list, HSK 1 and HSK 2 have 150 items, HSK 3 has 300.', status: ''},
-		{ file : 'list-hsk.json', name: 'HSK 2012 words pathway, Expert', description: '. Same as above. HSK 4, HSK 5, and HSK 6 are huge and could not be packed for now.', status: 'disableid'},
-		{ file : 'dict-heisig.json', name: 'Heisig logical pathway', description: '. Mr. Heisig provided a witty patway design to suit best the human brain. The book, which is required, make massive use of ethimology and mnemotechnic stories to ease memorization.', status: 'disabled' },
-		{ file : 'dict-subtlex-zh.json', name: 'Subtlex usefulness pathway', description: '. The Subtlex study provides the best words frequency list for learning toward actual communication. Based on film subtitles, an oral set of text, it provides you the most <em>useful<em> words to learn.', status: 'disabled' },
-		{ file : 'dict-French-MoE.json', name: 'French official pathway', description: '. Based on words frequency, this official list from the Ministry of Education completed the most common words by cultural and graphical additions.', status: 'disabled' }
+		{ val : 'list-hsk.json', name: 'HSK 2012 words pathway, Begginer', description: '. The lastest HSK words list, HSK 1 and HSK 2 have 150 items, HSK 3 has 300.', status: ''},
+		{ val : 'list-hsk.json', name: 'HSK 2012 words pathway, Expert', description: '. Same as above. HSK 4, HSK 5, and HSK 6 are huge and could not be packed for now.', status: 'disableid'},
+		{ val : 'dict-heisig.json', name: 'Heisig logical pathway', description: '. Mr. Heisig provided a witty patway design to suit best the human brain. The book, which is required, make massive use of ethimology and mnemotechnic stories to ease memorization.', status: 'disabled' },
+		{ val : 'dict-subtlex-zh.json', name: 'Subtlex usefulness pathway', description: '. The Subtlex study provides the best words frequency list for learning toward actual communication. Based on film subtitles, an oral set of text, it provides you the most <em>useful<em> words to learn.', status: 'disabled' },
+		{ val : 'dict-French-MoE.json', name: 'French official pathway', description: '. Based on words frequency, this official list from the Ministry of Education completed the most common words by cultural and graphical additions.', status: 'disabled' }
 	];
 	for (var i in lists) {
 		var it = lists[i];
 		$('#lists').append(
-		 '<div class="radio '+it.status+'"><label><input type="radio" name="lists" value="'+it.file+'"><b class="label label-success">'+it.name +'</b>'+ it.description +'</label></div>'
+		 '<div class="radio '+it.status+'"><label><input type="radio" name="lists" value="'+it.val+'"><b class="label label-success">'+it.name +'</b>'+ it.description +'</label></div>'
 		);
 	};
 	</script>
@@ -81,10 +81,28 @@
   	<h3 class="panel-title">Sounds</h3>
  	</div>
  	<div class="panel-body">
-	  <h3></h3>
-		Play once
-		Play twice
-		Volume: see your device's settings
+		<div role="form" class="controls" id="replays">
+			Audios replays ?:
+	<script>
+	var replays = [
+		{ val : '1', name: '1', description: '. Plays each audio once only.', status: 'checked'},
+		{ val : '2', name: '2', description: '. Plays each audio twice, better for learning!', status: ''},
+	];
+	for (var i in replays) {
+		var it = replays[i];
+		$('#replays').append(
+		 '<div class="radio"><label><input type="radio" name="replays" value="'+it.val+'" '+it.status+'><b class="label label-success">'+it.name +'</b>'+ it.description +'</label></div>'
+		);
+	};
+	</script>
+	
+	<div>
+		<button id="refresh_replays" type="button" class="btn btn-success pull-right">  
+			<span><i class="fa fa-book"></i> Save audio settings</span>
+		</button>
+	</div>
+			
+		</div>
   </div>
 </div>
 <div class="panel panel-default">
@@ -95,14 +113,14 @@
 	  <div role="form" class="controls" id="dictionaries"></div>
 	<script>
 	var dictionaries = [
-		{ file : 'dict-hsk8653.json', name: 'HSK 2002 dictionary, English', description: '. This edition was the largest HSK edition, initially containing over common 8660 words selected by the Chinese governement to ease learning and communication.', status: ''},
-		{ file : 'dict-hsk8653.json', name: 'HSK 2002 dictionary, English', description: '. This edition was the largest HSK edition, initially containing over common 8660 words selected by the Chinese governement to ease learning and communication.', status: ''},
-		{ file : 'dict-hsk-CFDICT.json', name: 'HSK 2002 dictionary, French', description: ' (coming soon). A Chinese-French version of the <b>HSK 2002 English edition</b> above.', status: 'disabled' }
+		{ val : 'dict-hsk8653.json', name: 'HSK 2002 dictionary, English', description: '. This edition was the largest HSK edition, initially containing over common 8660 words selected by the Chinese governement to ease learning and communication.', status: ''},
+		{ val : 'dict-hsk8653.json', name: 'HSK 2002 dictionary, English', description: '. This edition was the largest HSK edition, initially containing over common 8660 words selected by the Chinese governement to ease learning and communication.', status: ''},
+		{ val : 'dict-hsk-CFDICT.json', name: 'HSK 2002 dictionary, French', description: ' (coming soon). A Chinese-French version of the <b>HSK 2002 English edition</b> above.', status: 'disabled' }
 	];
 	for (var i in dictionaries) {
 		var it = dictionaries[i];
 		$('#dictionaries').append(
-		 '<div class="radio '+it.status+'"><label><input type="radio" name="lists" value="'+it.file+'"><b class="label label-warning">'+it.name +'</b>'+ it.description +'</label></div>'
+		 '<div class="radio '+it.status+'"><label><input type="radio" name="dictinaries" value="'+it.val+'" '+ status+'><b class="label label-warning">'+it.name +'</b>'+ it.description +'</label></div>'
 		);
 	};
 	</script>
@@ -136,20 +154,33 @@
 	
 	
 <script>
-	localStorage.appOptions=[];
 	appendJQMHeader('Settings');
+	
+	if(!localStorage.option_list){ window.localStorage.setItem("option_list", lists[0].val ) }
+	document.querySelector("#lists input[value='"+localStorage.option_list+"']").checked = true;
 	$("#refresh_list").click( function(){ 
-//		localStorage.removeItem("dict");
-		localStorage.appOptions.push({ "listSelected": "" });
-		localStorage.appOptions.listSelected =  $('#lists input:checked').val()[0] ;
+		var val = $('#lists input:checked').val() ;
+		window.localStorage.setItem("option_list", val);
 		console.log($('#lists input:checked').val());
-		var path = loadJSONFile('../data/'+localStorage.appOptions.listSelected, "list")
+		var path = loadJSONFile('../data/'+localStorage.option_list, "list")
 	});
+	
+	if(!localStorage.option_dict){ window.localStorage.setItem("option_dict", dictionaries[0].val ) }
+	document.querySelector("#dictionaries input[value='"+localStorage.option_dict+"']").checked = true;
 	$("#refresh_dict").click( function(){ 
 		localStorage.removeItem("dict");
-		localStorage.appOptions.dictSelected = $('#dictionaries input:checked').val();
+		var val = $('#dictionaries input:checked').val() ;
+		window.localStorage.setItem("option_dict", val);
 		console.log($('#dictionaries input:checked').val());
-		var dict = loadJSONFile('../data/'+localStorage.appOptions.dictSelected, "dict")
+		var dict = loadJSONFile('../data/'+localStorage.option_dict, "dict")
+	});
+	if(!localStorage.option_replay){ window.localStorage.setItem("option_replay", replays[0].val ) }
+	document.querySelector("#replays input[value='"+localStorage.option_replay+"']").checked = true;
+	$("#refresh_replays").click( function(){ 
+		var val = $('#replays input:checked').val() ;
+		window.localStorage.setItem("option_replay", val );// $('#replays input:checked').val();
+		console.log($('#replays input:checked').val());
+		console.log(localStorage.option_replay);
 	});
 
 	$("#resetKnol").click( function(){ 

@@ -402,7 +402,7 @@ var setLexemeCss = function (object, $item) {
 			val = { "rank":20000,"status":1,"score":100000000,"k_date":0,"favorite":0,"f_date":0}; 
 			val.ort= lexeme;
 			// val.score = 
-			knol.push(val);
+			object.push(val);
 		}
 		//console.log(lexeme+": "+ JSON.stringify(val));
 		var visualStatus = "bd-neutral";
