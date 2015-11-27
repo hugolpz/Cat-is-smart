@@ -9,7 +9,7 @@ git clone https://github.com/hugolpz/audio-cmn.git ./audio/cmn
 
 ### Web/Mobile Lexical App
 
-**Cat-is-smart web app** [alpha] have been designed to provide a demo app implementing expertises and innovations in information design and Chinese vocabulary acquisition. Focusing on HSK 2010 words plus 10.000 other frequent items, we use well known vocabulary acquisition concepts such as lexical transfers and easing factors to provide an optimal, personalized curriculum to the learner. As researchers, we also wish to use this project to push forward A/B studies and quantitative analysis in order to get real numbers on learners' practices, and solidly identify what works best.
+**Cat-is-smart web app** [[alpha](https://hugolpz.github.io/Cat-is-smart/html/)] have been designed to provide a demo app implementing expertises and innovations in information design and Chinese vocabulary acquisition. Focusing on HSK 2010 words plus 10.000 other frequent items, we use well known vocabulary acquisition concepts such as lexical transfers and easing factors to provide an optimal, personalized curriculum to the learner. As researchers, we also wish to use this project to push forward A/B studies and quantitative analysis in order to get real numbers on learners' practices, and solidly identify what works best.
 
 ### Features
 
