@@ -18,7 +18,7 @@ $('header')
 +'	<div class="container-fluid">'
 +'		<!-- Brand and toggle get grouped for better mobile display -->'
 +'		<div class="navbar-header">'
-+'			<a href="./index.html" class="navbar-brand" style="padding: 1px 1px 1px 3px;"><img src="http://static.cfdict.fr/img/cfdict_icon_48x48.png" alt="CFDict"></a>'  
++'			<a href="./index.html" class="navbar-brand" style="padding: 1px 1px 1px 3px;"><img src="../img/cfdict.png" width="48px" alt="CFDict"></a>'  
 +'			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#cfdict-navbar-collapse">'
 +'				<span class="sr-only">Toggle navigation</span>  <span class="icon-bar"></span>  <span class="icon-bar"></span>  <span class="icon-bar"></span>'
 +'			</button>'
