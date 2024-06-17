@@ -74,6 +74,8 @@ html, body, #hook { height: 100%; width: 100%; }
 .def .sem:nth-child(13):before { content: "; ⓭"; font-size: 1.2em; }
 .def .sem:nth-child(14):before { content: "; ⓮"; font-size: 1.2em; }
 .def .sem:nth-child(15):before { content: "; ⓯"; font-size: 1.2em; }
+.def .sem:last-child:after { content: "."; font-size: 1.2em; }
+
 
 .exe:nth-child(1):before { content: ", ex: "; font-size: .9em; }
 
@@ -88,6 +90,7 @@ def:nth-child(7):before  { content: "; ⑦"; font-size: 1.5em; }
 def:nth-child(8):before  { content: "; ⑧"; font-size: 1.5em; }
 def:nth-child(9):before  { content: "; ⑨"; font-size: 1.5em; }
 def:nth-child(10):before { content: "; ⑩"; font-size: 1.5em; }
+def:last-child:after { content: "."; font-size: 1.5em; }
 */
 
 /*******************************************/
