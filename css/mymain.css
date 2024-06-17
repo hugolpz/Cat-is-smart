@@ -114,7 +114,6 @@ html, body, #hook { height: 100%; width: 100%; }
 .def .phon:nth-child(13):before { content: "; ⑬"; font-size: 1.5em; }
 .def .phon:nth-child(14):before { content: "; ⑭"; font-size: 1.5em; }
 .def .phon:last-child:after { content: "."; font-size: 1.5em; }
-*/
 
 /*******************************************/
 /*              INTERACTIONS               */
