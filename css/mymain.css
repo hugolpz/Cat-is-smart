@@ -76,21 +76,42 @@ html, body, #hook { height: 100%; width: 100%; }
 .def .sem:nth-child(15):before { content: "; ⓯"; font-size: 1.2em; }
 .def .sem:last-child:after { content: "."; font-size: 1.2em; }
 
+/* Lexicography > exa: */
+/*exanum: ⒈⒉⒊⒋⒌⒍⒎⒏⒐⒑⒒⒓⒔⒕⒖⒗ */
+def .exa:nth-child(1):before { content: ", ex: ⒈« "; font-size: .9em; }
+def .exa:nth-child(2):before { content: " »; ⒉« "; font-size: .9em; }
+def .exa:nth-child(3):before { content: " »; ⒊« "; font-size: .9em; }
+def .exa:nth-child(4):before { content: " »; ⒋« "; font-size: .9em; }
+def .exa:nth-child(5):before { content: " »; ⒌« "; font-size: .9em; }
+def .exa:nth-child(6):before { content: " »; ⒍« "; font-size: .9em; }
+def .exa:nth-child(7):before { content: " »; ⒎« "; font-size: .9em; }
+def .exa:nth-child(8):before { content: " »; ⒏« "; font-size: .9em; }
+def .exa:nth-child(9):before { content: " »; ⒐« "; font-size: .9em; }
+def .exa:nth-child(10):before { content: " »; ⒑« "; font-size: .9em; }
+def .exa:nth-child(11):before { content: " »; ⒒« "; font-size: .9em; }
+def .exa:nth-child(12):before { content: " »; ⒓« "; font-size: .9em; }
+def .exa:nth-child(13):before { content: " »; ⒔« "; font-size: .9em; }
+def .exa:nth-child(14):before { content: " »; ⒕« "; font-size: .9em; }
+def .exa:nth-child(15):before { content: " »; ⒖« "; font-size: .9em; }
+def .exa:nth-child(16):before { content: " »; ⒗« "; font-size: .9em; }
+def .exa:last-child:after { content: " »."; font-size: .9em; }
 
-.exe:nth-child(1):before { content: ", ex: "; font-size: .9em; }
-
-/* Lexicography > phon:
-def:nth-child(1):before  { content:   "①"; font-size: 1.5em; }
-def:nth-child(2):before  { content: "; ②"; font-size: 1.5em; }
-def:nth-child(3):before  { content: "; ③"; font-size: 1.5em; }
-def:nth-child(4):before  { content: "; ④"; font-size: 1.5em; }
-def:nth-child(5):before  { content: "; ⑤"; font-size: 1.5em; }
-def:nth-child(6):before  { content: "; ⑥"; font-size: 1.5em; }
-def:nth-child(7):before  { content: "; ⑦"; font-size: 1.5em; }
-def:nth-child(8):before  { content: "; ⑧"; font-size: 1.5em; }
-def:nth-child(9):before  { content: "; ⑨"; font-size: 1.5em; }
-def:nth-child(10):before { content: "; ⑩"; font-size: 1.5em; }
-def:last-child:after { content: "."; font-size: 1.5em; }
+/* Lexicography > phon: */
+def .phon:nth-child(1):before  { content:   "①"; font-size: 1.5em; }
+def .phon:nth-child(2):before  { content: "; ②"; font-size: 1.5em; }
+def .phon:nth-child(3):before  { content: "; ③"; font-size: 1.5em; }
+def .phon:nth-child(4):before  { content: "; ④"; font-size: 1.5em; }
+def .phon:nth-child(5):before  { content: "; ⑤"; font-size: 1.5em; }
+def .phon:nth-child(6):before  { content: "; ⑥"; font-size: 1.5em; }
+def .phon:nth-child(7):before  { content: "; ⑦"; font-size: 1.5em; }
+def .phon:nth-child(8):before  { content: "; ⑧"; font-size: 1.5em; }
+def .phon:nth-child(9):before  { content: "; ⑨"; font-size: 1.5em; }
+def .phon:nth-child(10):before { content: "; ⑩"; font-size: 1.5em; }
+def .phon:nth-child(11):before { content: "; ⑪"; font-size: 1.5em; }
+def .phon:nth-child(12):before { content: "; ⑫"; font-size: 1.5em; }
+def .phon:nth-child(13):before { content: "; ⑬"; font-size: 1.5em; }
+def .phon:nth-child(14):before { content: "; ⑭"; font-size: 1.5em; }
+def .phon:last-child:after { content: "."; font-size: 1.5em; }
 */
 
 /*******************************************/
